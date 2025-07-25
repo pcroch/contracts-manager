@@ -15,7 +15,7 @@ Using those settings:
 
     org.h2.Driver
 
-    jdbc:h2:mem:contract-manager-db 
+    jdbc:h2:mem:contact-manager-db 
 
 ### Spring Boot
 
@@ -47,8 +47,8 @@ In case of conflict with a port you can change the default port 8080 to the desi
 
 *with depth limit and with files*
 
-    tree -L 5 /path-to-project/IdeaProjects/contract-manager/src
+    tree -L 5 /path-to-project/IdeaProjects/contact-manager/src
 
 *without depth limit and without files*
 
-    tree -d  /path-to-project/IdeaProjects/contract-manager/src
+    tree -d  /path-to-project/IdeaProjects/contact-manager/src

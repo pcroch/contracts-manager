@@ -1,4 +1,4 @@
-create TABLE CONTRACT (
+create TABLE CONTACT (
                         contract_id UUID  PRIMARY KEY,
                         firstname VARCHAR ( 50 ) NOT NULL,
                         lastname VARCHAR ( 50 ) NOT NULL,

@@ -8,7 +8,7 @@ VALUES
     ('d4e5f6a7-b8c9-0123-4567-1234567890ad', '180', NULL, 'Rue de la Victoire', '1060', 'Saint-Gilles', 'Belgium');
 
 
-INSERT INTO CONTRACT (contract_id, firstname, lastname, is_employee, tva_number, address_id)
+INSERT INTO CONTACT (contract_id, firstname, lastname, is_employee, tva_number, address_id)
 VALUES
      -- Employee
     (RANDOM_UUID(), 'Alice', 'Smith', TRUE, NULL, 'e5f6a7b8-c9d0-1234-5678-90abcdef0123'),
