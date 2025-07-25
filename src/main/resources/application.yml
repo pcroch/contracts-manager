@@ -14,7 +14,7 @@ spring:
     schema: schema_db
   jpa:
     hibernate:
-      ddl-auto: none # to aovoid clashing with flyway
+      ddl-auto: none # to avoid clashing with flyway
     properties:
       hibernate:
         format_sql: true
