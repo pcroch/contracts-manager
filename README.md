@@ -1,34 +1,21 @@
-[![Coverage](.github/badges/jacoco.svg)](https://github.com/pcroch/spring-security/actions/workflows/jacoco_badge.yml) [![Coverage](.github/badges/branches.svg)](https://github.com/pcroch/spring-security/actions/workflows/jacoco_badge.yml)
+[![Coverage](.github/badges/jacoco.svg)](https://github.com/pcroch/spring-security/actions/workflows/jacoco_badge.yml)
 
 [![.github/workflows/maven.yml](https://github.com/pcroch/spring-security/actions/workflows/build.yml/badge.svg)](https://github.com/pcroch/spring-security/actions/workflows/build.yml)
 
 # Description
 
-This is a default project to have a fast start when I want to develop something on spring boot
-
-Postgres is the db that is run locally in addition with flyway. To run the pipeline, h2 is used
 
 # Initial Set-up
 
-## Postgres
+## H2
 
-*If not installed check : https://wiki.archlinux.org/title/PostgreSQL*
+you can connect via: http://localhost:8080/h2-console/
 
-## Log to postgres:
+Using those settings: 
 
-    sudo -i -u postgres
+    org.h2.Driver
 
-## Create admin user name admin:
-
-    createuser --interactive 
-
-## Create a db in Postgres with the following command:
-    
-    createdb db-template
-
-## Check db:
-
-    psql -d db-template
+    jdbc:h2:mem:contract-manager-db 
 
 ### Spring Boot
 
@@ -60,72 +47,8 @@ In case of conflict with a port you can change the default port 8080 to the desi
 
 *with depth limit and with files*
 
-    tree -L 5 /path-to-project/IdeaProjects/spring-boot-template/src
+    tree -L 5 /path-to-project/IdeaProjects/contract-manager/src
 
 *without depth limit and without files*
 
-    tree -d  /path-to-project/IdeaProjects/spring-boot-template/src
-
-## with <u>tree -d</u> we  will have
-
-```
-├── main
-│   ├── java
-│   │   └── api
-│   │       └── mywebapp
-│   │           ├── commun
-│   │           ├── config
-│   │           ├── controller
-│   │           │   ├── template
-│   │           │   │   ├── v1
-│   │           │   │   └── v2
-│   │           │   └── template2
-│   │           │       ├── v1
-│   │           │       └── v2
-│   │           ├── domain
-│   │           ├── dto
-│   │           │   ├── template
-│   │           │   │   ├── v1
-│   │           │   │   └── v2
-│   │           │   └── template2
-│   │           │       ├── v1
-│   │           │       └── v2
-│   │           ├── exception
-│   │           ├── mapper
-│   │           ├── repository
-│   │           ├── service
-│   │           │   └── impl
-│   │           └── utils
-│   └── resources
-│       └── db 
-│           └── migration
-└── test
-    └── java
-        └── api
-            └── mywebapp
-                ├── commun
-                ├── config
-                ├── controller
-                │   ├── template
-                │   │   ├── v1
-                │   │   └── v2
-                │   └── template2
-                │       ├── v1
-                │       └── v2
-                ├── domain
-                ├── dto
-                │   ├── template
-                │   │   ├── v1
-                │   │   └── v2
-                │   └── template2
-                │       ├── v1
-                │       └── v2
-                ├── exception
-                ├── mapper
-                ├── repository
-                ├── service
-                │   └── impl
-                └── utils
-
-
-```
+    tree -d  /path-to-project/IdeaProjects/contract-manager/src

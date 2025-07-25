@@ -2,33 +2,27 @@ server:
   port: 8080
 
 spring:
-  properties:
-    hibernate:
-      globally_quoted_identifiers: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/template-db
-    password: admin
-    username: admin
-    #    testOnBorrow: true
-    #    testWhileIdle: true
-    schema: template-schema
-  #    hikari:
-  #      maximum-pool-size: 5
-  #      idle-timeout: 600000
-  flyway:
-    defaultSchema: template-schema
-    baseline-on-migrate: true
-    enabled: true
+    url: jdbc:h2:mem:contract-manager-db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    username: su
+    password:
+    driver-class-name: org.h2.Driver
+    schema: db-schema
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    # Hibernate ddl auto (create, create-drop, update): with "update" the database
-    # schema will be automatically updated accordingly to java entities found in
-    # the project
     hibernate:
       ddl-auto: update
-    #    show-sql: false
     properties:
       hibernate:
-        #        format_sql: false
-        default_schema: template-schema
+        format_sql: true
+        use_sql_comments: true
+        default_schema: db-schema
+        # For H2 to behave more like PostgreSQL (if your prod DB is Postgres)
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    defaultSchema: db-schema
+    enabled: true
+    baseline-on-migrate: true

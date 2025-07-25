@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>spring-boot-template</artifactId>
+    <artifactId>contract-manager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-template</name>
-    <description>spring-boot-template</description>
+    <name>contract-manager</name>
+    <description>contract-manager</description>
     <properties>
         <java.version>11</java.version>
     </properties>
