@@ -15,7 +15,7 @@ Using those settings:
 
     org.h2.Driver
 
-    jdbc:h2:mem:contact_manager_db 
+    jdbc:h2:file:./contact_manager_db 
 
 ### Spring Boot
 
