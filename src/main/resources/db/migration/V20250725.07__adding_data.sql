@@ -35,4 +35,7 @@ VALUES
     (RANDOM_UUID(), 'BE6789012345', 'b2c3d4e5-f6a7-8901-2345-1234567890ab'),
 
     -- Enterprise 5: Uses Grand-Place address
-    (RANDOM_UUID(), 'BE5432109876', 'c3d4e5f6-a7b8-9012-3456-1234567890ac');
+    (RANDOM_UUID(), 'BE5432109876', 'c3d4e5f6-a7b8-9012-3456-1234567890ac'),
+
+    -- Enterprise 6: Uses Saint-Gilles address
+    (RANDOM_UUID(), 'BE5432109878', 'd4e5f6a7-b8c9-0123-4567-1234567890ad');
