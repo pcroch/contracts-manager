@@ -1,0 +1,32 @@
+package api.contactManager.domain;
+
+import lombok.Data;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.util.UUID;
+
+@Data
+@Entity
+@ToString
+@Table(name = "enterprise")
+public class Enterprise {
+
+    @Id
+    @Column(name = "enterprise_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    //    @NotNull
+    @Column(name = "tva_number")
+
+    private String tvaNumber;
+
+//    @OneToOne(mappedBy = "enterprise")
+//    private api.contactManager.domain.Address address;
+//
+//    @ManyToMany(mappedBy = "contact")
+//    private List<Contact> contact;
+
+
+}

@@ -1,4 +1,4 @@
-INSERT INTO ADDRESS (address_id, street_number, box_number, street_name, zipcode, locality, country)
+INSERT INTO ADDRESS (id, street_number, box_number, street_name, zipcode, locality, country)
 VALUES
     ('e5f6a7b8-c9d0-1234-5678-90abcdef0123', '8', NULL, 'Rue de la Loi', '1000', 'Brussels', 'Belgium'),
     ('f6a7b8c9-d0e1-2345-6789-0abcdef01234', '15', 'Bus 4', 'Leopoldstraat', '2000', 'Antwerp', 'Belgium'),
@@ -8,7 +8,7 @@ VALUES
     ('d4e5f6a7-b8c9-0123-4567-1234567890ad', '180', NULL, 'Rue de la Victoire', '1060', 'Saint-Gilles', 'Belgium');
 
 
-INSERT INTO CONTACT (contract_id, firstname, lastname, is_employee, tva_number, address_id)
+INSERT INTO CONTACT (id, firstname, lastname, is_employee, tva_number, address_id)
 VALUES
      -- Employee
     ('e01f2fc2-d559-4e3b-b667-b4078bf0fefa', 'Alice', 'Smith', TRUE, NULL, 'e5f6a7b8-c9d0-1234-5678-90abcdef0123'),
@@ -20,7 +20,7 @@ VALUES
     ('7a0dbc2a-9897-4409-82cf-cbce8e8e8a51', 'Jane', 'Prince', FALSE, 'BE9876543210', 'b2c3d4e5-f6a7-8901-2345-1234567890ab');
 
 
-INSERT INTO ENTERPRISE (enterprise_id, tva_number, address_id)
+INSERT INTO ENTERPRISE (id, tva_number, address_id)
 VALUES
     -- Enterprise 1: Uses Brussels address
     ('e6a7ff8b-9c5c-4174-a823-3ffd261a5fcc', 'BE0123456789', 'e5f6a7b8-c9d0-1234-5678-90abcdef0123'),

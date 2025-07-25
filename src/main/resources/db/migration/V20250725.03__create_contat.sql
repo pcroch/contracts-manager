@@ -1,9 +1,9 @@
-create TABLE CONTACT (
-                        contract_id UUID  PRIMARY KEY,
+create TABLE contact (
+                        id UUID  PRIMARY KEY,
                         firstname VARCHAR ( 50 ) NOT NULL,
                         lastname VARCHAR ( 50 ) NOT NULL,
                         is_employee boolean DEFAULT true, -- true to satisfy the constraint by default
                         tva_number VARCHAR ( 12 ),
-                        address_id UUID UNIQUE,
-                        FOREIGN KEY (address_id) REFERENCES ADDRESS(address_id)
+                        address_id UUID,
+                        FOREIGN KEY (address_id) REFERENCES address (id)
 );
