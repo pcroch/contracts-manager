@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -25,8 +26,9 @@ public class Enterprise {
     @JoinColumn(name = "address_id")
     private Address enterprise_address;
 //
-//    @ManyToMany(mappedBy = "contact")
-//    private List<Contact> contact;
+//    @ManyToMany(mappedBy = "enterprise_contact")
+    @ManyToMany
+    private Set<Contact> contact;
 
 
 }

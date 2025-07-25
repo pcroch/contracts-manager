@@ -5,6 +5,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -37,11 +39,11 @@ public class Contact implements Serializable {
     @JoinColumn(name = "address_id")
     private Address contact_address;
 
-//    @ManyToMany
+    @ManyToMany
 //    @JoinTable(
-//            name = "contact_enterprise",
-//            joinColumns = {@JoinColumn(name = "contact_id", referencedColumnName = "id")}) //
-//    private Set<Contact> contact = new HashSet<>();
+//            name = "enterprise_contact",
+//            joinColumns = {@JoinColumn(name = "enterprise_id", referencedColumnName = "id")})
+    private Set<Enterprise> enterprise = new HashSet<>();
 
 
 //    @Override
