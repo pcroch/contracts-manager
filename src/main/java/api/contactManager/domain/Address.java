@@ -41,16 +41,15 @@ public class Address implements Serializable {
     @Column(name = "country")
     private String country;
 
-//    @OneToOne(mappedBy = "address")
-//    private Contact contact;
+    @OneToOne(mappedBy = "contact_address")
+    private Contact contact;
 
-//    @OneToOne
-//    @JoinColumn(name = "enterprise_id")
-//    private Enterprise enterprise;
-
+    @OneToOne(mappedBy = "enterprise_address")
+    private Enterprise enterprise;
 
 //    @Override
 //    public String toString() {
 //        return String.format("{addressId: %s, streetNumber: %s, streetName: %s}", addressId, streetNumber, streetName);
 //    }
+
 }

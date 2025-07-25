@@ -14,7 +14,7 @@ spring:
     schema: schema_db
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
@@ -26,3 +26,4 @@ spring:
     defaultSchema: schema_db
     enabled: true
     baseline-on-migrate: true
+#    clean-on-validation-error: true

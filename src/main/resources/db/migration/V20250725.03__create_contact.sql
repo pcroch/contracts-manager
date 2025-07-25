@@ -5,5 +5,5 @@ CREATE TABLE IF NOT EXISTS contact (
                         is_employee boolean DEFAULT true, -- true to satisfy the constraint by default
                         tva_number VARCHAR ( 12 ),
                         address_id UUID,
-                        CONSTRAINT FK_contact_address FOREIGN KEY (address_id) REFERENCES address (id)
+                        FOREIGN KEY (address_id) REFERENCES address (id)
 );

@@ -19,11 +19,11 @@ public class Enterprise {
 
     //    @NotNull
     @Column(name = "tva_number")
-
     private String tvaNumber;
 
-//    @OneToOne(mappedBy = "enterprise")
-//    private api.contactManager.domain.Address address;
+    @OneToOne //@OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address enterprise_address;
 //
 //    @ManyToMany(mappedBy = "contact")
 //    private List<Contact> contact;

@@ -33,9 +33,9 @@ public class Contact implements Serializable {
     @Column(name = "tva_number")
     private String tvaNumber;
 
-//    @OneToOne
-//    @JoinColumn(name = "address_id", referencedColumnName = "id")
-//    private Address address;
+    @OneToOne //@OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address contact_address;
 
 //    @ManyToMany
 //    @JoinTable(
