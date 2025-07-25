@@ -14,16 +14,14 @@ spring:
     schema: schema_db
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: none # to aovoid clashing with flyway
     properties:
       hibernate:
         format_sql: true
         use_sql_comments: true
         default_schema: schema_db
-        # For H2 to behave more like PostgreSQL (if your prod DB is Postgres)
         dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
     defaultSchema: schema_db
     enabled: true
     baseline-on-migrate: true
-#    clean-on-validation-error: true
