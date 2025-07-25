@@ -1,4 +1,4 @@
-create table address (
+CREATE TABLE IF NOT EXISTS address (
                          id UUID PRIMARY KEY,
                          street_number VARCHAR ( 50 ) NOT NULL,
                          box_number  VARCHAR( 50 ),
