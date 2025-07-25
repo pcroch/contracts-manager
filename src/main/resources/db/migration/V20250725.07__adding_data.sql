@@ -11,31 +11,31 @@ VALUES
 INSERT INTO CONTACT (contract_id, firstname, lastname, is_employee, tva_number, address_id)
 VALUES
      -- Employee
-    (RANDOM_UUID(), 'Alice', 'Smith', TRUE, NULL, 'e5f6a7b8-c9d0-1234-5678-90abcdef0123'),
+    ('e01f2fc2-d559-4e3b-b667-b4078bf0fefa', 'Alice', 'Smith', TRUE, NULL, 'e5f6a7b8-c9d0-1234-5678-90abcdef0123'),
     -- Freelancer
-    (RANDOM_UUID(), 'Bob', 'Johnson', FALSE, 'BE0123456789', 'f6a7b8c9-d0e1-2345-6789-0abcdef01234'),
+    ('2efd6efe-6998-4299-b883-177fe11da065', 'Bob', 'Johnson', FALSE, 'BE0123456789', 'f6a7b8c9-d0e1-2345-6789-0abcdef01234'),
     -- Employee
-    (RANDOM_UUID(), 'Charlie', 'Brown', TRUE, NULL, 'a1b2c3d4-e5f6-7890-5678-90abcdef0123'),
+    ('f0d9feeb-f25e-45dd-b688-5524a3fbb985', 'Charlie', 'Brown', TRUE, NULL, 'a1b2c3d4-e5f6-7890-5678-90abcdef0123'),
     -- Freelancer
-    (RANDOM_UUID(), 'Jane', 'Prince', FALSE, 'BE9876543210', 'b2c3d4e5-f6a7-8901-2345-1234567890ab');
+    ('7a0dbc2a-9897-4409-82cf-cbce8e8e8a51', 'Jane', 'Prince', FALSE, 'BE9876543210', 'b2c3d4e5-f6a7-8901-2345-1234567890ab');
 
 
 INSERT INTO ENTERPRISE (enterprise_id, tva_number, address_id)
 VALUES
     -- Enterprise 1: Uses Brussels address
-    (RANDOM_UUID(), 'BE0123456789', 'e5f6a7b8-c9d0-1234-5678-90abcdef0123'),
+    ('e6a7ff8b-9c5c-4174-a823-3ffd261a5fcc', 'BE0123456789', 'e5f6a7b8-c9d0-1234-5678-90abcdef0123'),
 
     -- Enterprise 2: Uses Antwerp address
-    (RANDOM_UUID(), 'BE9876543210', 'f6a7b8c9-d0e1-2345-6789-0abcdef01234'),
+    ('e36946d5-e30f-412d-bdbf-43ee2c9a08d6', 'BE9876543210', 'f6a7b8c9-d0e1-2345-6789-0abcdef01234'),
 
     -- Enterprise 3: Uses Ghent address
-    (RANDOM_UUID(), 'BE1122334455', 'a1b2c3d4-e5f6-7890-5678-90abcdef0123'),
+    ('a78818b8-2427-40cd-9a07-9e5c2ce9e798', 'BE1122334455', 'a1b2c3d4-e5f6-7890-5678-90abcdef0123'),
 
     -- Enterprise 4: Uses Uccle address
-    (RANDOM_UUID(), 'BE6789012345', 'b2c3d4e5-f6a7-8901-2345-1234567890ab'),
+    ('67f40bdf-d137-4968-a970-4e285ea0fb2e', 'BE6789012345', 'b2c3d4e5-f6a7-8901-2345-1234567890ab'),
 
     -- Enterprise 5: Uses Grand-Place address
-    (RANDOM_UUID(), 'BE5432109876', 'c3d4e5f6-a7b8-9012-3456-1234567890ac'),
+    ('d6316aef-1848-41ff-a7e5-b12a01666ce5', 'BE5432109876', 'c3d4e5f6-a7b8-9012-3456-1234567890ac'),
 
     -- Enterprise 6: Uses Saint-Gilles address
-    (RANDOM_UUID(), 'BE5432109878', 'd4e5f6a7-b8c9-0123-4567-1234567890ad');
+    ('fe612de9-0f8e-4d8a-9648-1fbb1f2bab46', 'BE5432109878', 'd4e5f6a7-b8c9-0123-4567-1234567890ad');
