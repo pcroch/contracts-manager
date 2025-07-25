@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Contact implements Serializable {
 
     @Id
-    @Column(name = "contract_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 

@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Enterprise {
 
     @Id
-    @Column(name = "enterprise_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
