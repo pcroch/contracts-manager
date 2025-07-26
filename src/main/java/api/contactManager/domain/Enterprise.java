@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 import java.util.UUID;
 
@@ -18,7 +19,7 @@ public class Enterprise {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    //    @NotNull
+    @NotNull(message = "tva number is a a required field.")
     @Column(name = "tva_number")
     private String tvaNumber;
 

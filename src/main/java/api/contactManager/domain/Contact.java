@@ -2,8 +2,10 @@ package api.contactManager.domain;
 
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,18 +22,18 @@ public class Contact implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    //    @NotNull(message = "road is a required field.")
+    @NotNull(message = "firstname is a a required field.")
     @Column(name = "firstname")
     private String firstname;
 
+    @NotNull(message = "lastname is a a required field.")
     @Column(name = "lastname")
     private String lastame;
 
-    //    @NotNull
+    @ColumnDefault("true")
     @Column(name = "is_employee")
     private boolean isEmployee;
 
-    //    @NotNull
     @Column(name = "tva_number")
     private String tvaNumber;
 
@@ -44,10 +46,4 @@ public class Contact implements Serializable {
 //            name = "enterprise_contact",
 //            joinColumns = {@JoinColumn(name = "enterprise_id", referencedColumnName = "id")})
     private Set<Enterprise> enterprise = new HashSet<>();
-
-
-//    @Override
-//    public String toString() {
-//        return String.format("{addressId: %s, streetNumber: %s, streetName: %s}", addressId, streetNumber, streetName);
-//    }
 }
