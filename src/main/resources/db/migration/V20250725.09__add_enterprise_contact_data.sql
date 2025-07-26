@@ -1,4 +1,4 @@
-INSERT INTO CONTACT_ENTERPRISE (contact_id, enterprise_id)
+INSERT INTO enterprise_contact (contact_id, enterprise_id)
 VALUES
     -- Alice Smith (Employee) working for Enterprise 1
     ('e01f2fc2-d559-4e3b-b667-b4078bf0fefa', 'e6a7ff8b-9c5c-4174-a823-3ffd261a5fcc'),

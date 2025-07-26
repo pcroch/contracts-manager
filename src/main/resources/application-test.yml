@@ -7,22 +7,23 @@ spring:
       enabled: true
       path: /h2-console
   datasource:
-    url: jdbc:h2:mem:contact-manager-db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    url: jdbc:h2:mem:contact_manager_db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
     username: su
     password:
     driver-class-name: org.h2.Driver
-    schema: db-schema
+    schema: schema_db
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
         use_sql_comments: true
-        default_schema: db-schema
+        default_schema: schema_db
         # For H2 to behave more like PostgreSQL (if your prod DB is Postgres)
         dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
-    defaultSchema: db-schema
+    defaultSchema: schema_db
     enabled: true
     baseline-on-migrate: true
+#    clean-on-validation-error: true
