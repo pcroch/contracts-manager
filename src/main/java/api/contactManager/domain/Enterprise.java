@@ -1,6 +1,8 @@
 package api.contactManager.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -23,13 +25,14 @@ public class Enterprise {
     @Column(name = "tva_number")
     private String tvaNumber;
 
-    @OneToOne //@OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address enterpriseAddress;
-//
-//    @ManyToMany(mappedBy = "enterprise_contact")
-    @ManyToMany
-    private Set<Contact> contact; // chouls be a set?
+
+//    @ManyToMany(mappedBy = "enterpriseList", fetch = FetchType.LAZY)
+//    private Set<Contact> contactList;
+
+
 
 
 }

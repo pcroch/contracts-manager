@@ -11,7 +11,7 @@ public interface EnterpriseMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "tvaNumber", target = "tvaNumber")
     @Mapping(source = "enterpriseAddress", target = "enterpriseAddress")
-    @Mapping(source = "contact", target = "contact")
+//    @Mapping(source = "contactList", target = "contactList")
     EnterpriseDTO toDomain(Enterprise e);
     Enterprise toMap(EnterpriseDTO dto);
 }

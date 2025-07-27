@@ -19,5 +19,5 @@ public class EnterpriseDTO implements Serializable {
     private UUID id;
     private String tvaNumber;
     private Address enterpriseAddress;
-    private Set<Contact> contact;
+    private Set<Contact> contactList;
 }

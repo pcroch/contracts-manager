@@ -1,5 +1,6 @@
 package api.contactManager.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -39,12 +40,15 @@ public class Contact implements Serializable {
     private String tvaNumber;
 
     @OneToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address contactAddress;
 
-    @ManyToMany
+//    @ManyToMany(fetch = FetchType.LAZY)
 //    @JoinTable(
 //            name = "enterprise_contact",
-//            joinColumns = {@JoinColumn(name = "enterprise_id", referencedColumnName = "id")})
-    private Set<Enterprise> enterprise = new HashSet<>();
+//            joinColumns = @JoinColumn(name = "contact_id"),
+//            inverseJoinColumns = @JoinColumn(name = "enterprise_id"))
+//    private Set<Enterprise> enterpriseList = new HashSet<>();
+
+
 }

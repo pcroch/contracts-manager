@@ -20,5 +20,5 @@ public class ContactDTO implements Serializable {
     private boolean isEmployee;
     private String tvaNumber;
     private Address contactAddress;
-    private Set<Enterprise> enterprise = new HashSet<>();
+    private Set<Enterprise> enterpriseList;
 }
