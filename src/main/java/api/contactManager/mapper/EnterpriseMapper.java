@@ -1,0 +1,18 @@
+package api.contactManager.mapper;
+
+import api.contactManager.domain.Enterprise;
+import api.contactManager.dto.EnterpriseDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+@Mapper(componentModel = "spring")
+public interface EnterpriseMapper {
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "tvaNumber", target = "tvaNumber")
+    @Mapping(source = "enterpriseAddress", target = "enterpriseAddress")
+    @Mapping(source = "contact", target = "contact")
+    EnterpriseDTO toDomain(Enterprise e);
+    Enterprise toMap(EnterpriseDTO dto);
+}
+

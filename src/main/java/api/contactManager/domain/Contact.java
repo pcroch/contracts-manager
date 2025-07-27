@@ -22,13 +22,13 @@ public class Contact implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @NotNull(message = "firstname is a a required field.")
-    @Column(name = "firstname")
-    private String firstname;
+    @NotNull(message = "name is a a required field.")
+    @Column(name = "name")
+    private String name;
 
     @NotNull(message = "lastname is a a required field.")
-    @Column(name = "lastname")
-    private String lastame;
+    @Column(name = "last_name")
+    private String lastName;
 
     @ColumnDefault("true")
     @Column(name = "is_employee")
@@ -39,7 +39,7 @@ public class Contact implements Serializable {
 
     @OneToOne //@OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    private Address contact_address;
+    private Address contactAddress;
 
     @ManyToMany
 //    @JoinTable(

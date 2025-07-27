@@ -41,9 +41,9 @@ public class Address implements Serializable {
     @Column(name = "country")
     private String country;
 
-    @OneToOne(mappedBy = "contact_address")
+    @OneToOne(mappedBy = "contactAddress")
     private Contact contact;
 
-    @OneToOne(mappedBy = "enterprise_address")
+    @OneToOne(mappedBy = "enterpriseAddress")
     private Enterprise enterprise;
 }
