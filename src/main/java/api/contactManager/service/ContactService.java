@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface ContactService {
 
-    Logger log = LoggerFactory.getLogger(ContactService.class);
-
     List<ContactDTO> findAll();
 
 }
