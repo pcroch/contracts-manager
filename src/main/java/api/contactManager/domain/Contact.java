@@ -50,6 +50,4 @@ public class Contact implements Serializable {
             joinColumns = @JoinColumn(name = "contact_id"),
             inverseJoinColumns = @JoinColumn(name = "enterprise_id"))
     private Set<Enterprise> enterprises = new HashSet<>();
-
-
 }

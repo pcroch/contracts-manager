@@ -13,6 +13,7 @@ public interface EnterpriseMapper {
     @Mapping(source = "enterpriseAddress", target = "enterpriseAddress")
     @Mapping(source = "contacts", target = "contacts")
     EnterpriseDTO toDomain(Enterprise e);
+
     Enterprise toMap(EnterpriseDTO dto);
 }
 
