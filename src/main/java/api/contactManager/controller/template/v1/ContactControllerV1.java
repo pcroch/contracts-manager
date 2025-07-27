@@ -5,20 +5,22 @@ import api.contactManager.dto.ContactDTO;
 import api.contactManager.mapper.ContactMapper;
 import api.contactManager.repository.ContactRepository;
 import api.contactManager.service.ContactService;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
+@Slf4j
 @Controller
 public class ContactControllerV1 extends BaseRestController {
-
-    private static final Logger log = LoggerFactory.getLogger(ContactControllerV1.class);
 
     private final ContactService contactService;
 
@@ -29,11 +31,29 @@ public class ContactControllerV1 extends BaseRestController {
         this.contactMapper = contactMapper;
     }
 
-
     @GetMapping("/contacts")
     public ResponseEntity<List<ContactDTO>> getAllContacts() {
         log.info("REST request to get all contacts");
-        List<ContactDTO> response = contactService.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(contactService.findAll());
+    }
+
+
+    @PostMapping("/")
+    public ResponseEntity<Contact> createContact(@RequestBody ContactDTO body) {
+        log.info("Create");
+        return null;
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Contact> updateContact(@PathVariable("id") UUID id, @RequestBody @NonNull ContactDTO body) {
+        log.info("Update");
+        //todo remplace by body params
+        return null;
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Integer> deleteContactPerId(@PathVariable("id") UUID id) {
+        log.info("Delete");
+        return null;
     }
 }
