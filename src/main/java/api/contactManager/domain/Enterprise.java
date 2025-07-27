@@ -25,11 +25,11 @@ public class Enterprise {
 
     @OneToOne //@OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    private Address enterprise_address;
+    private Address enterpriseAddress;
 //
 //    @ManyToMany(mappedBy = "enterprise_contact")
     @ManyToMany
-    private Set<Contact> contact;
+    private Set<Contact> contact; // chouls be a set?
 
 
 }
