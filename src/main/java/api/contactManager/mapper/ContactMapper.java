@@ -14,7 +14,7 @@ public interface ContactMapper {
     @Mapping(source = "isEmployee", target = "isEmployee")
     @Mapping(source = "tvaNumber", target = "tvaNumber")
     @Mapping(source = "contactAddress", target = "contactAddress")
-//    @Mapping(source = "enterpriseList", target = "enterpriseList")
+    @Mapping(source = "enterprises", target = "enterprises")
     ContactDTO toDomain(Contact e);
     Contact toMap(ContactDTO dto);
 }

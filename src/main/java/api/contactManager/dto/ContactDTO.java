@@ -6,12 +6,13 @@ import java.util.UUID;
 
 import api.contactManager.domain.Address;
 import api.contactManager.domain.Enterprise;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
+
 import java.io.Serializable;
 
-@Data
-@ToString
+@Getter
+@Setter
+@ToString(exclude = {"enterprises"})
 public class ContactDTO implements Serializable {
 
     private UUID id;
@@ -20,5 +21,5 @@ public class ContactDTO implements Serializable {
     private Boolean isEmployee;
     private String tvaNumber;
     private Address contactAddress;
-    private Set<Enterprise> enterpriseList;
+    private Set<Enterprise> enterprises;
 }

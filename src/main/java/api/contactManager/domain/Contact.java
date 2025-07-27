@@ -2,9 +2,7 @@ package api.contactManager.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -14,7 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @ToString
 @Table(name = "contact")
@@ -45,11 +44,12 @@ public class Contact implements Serializable {
     private Address contactAddress;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinTable(
             name = "enterprise_contact",
             joinColumns = @JoinColumn(name = "contact_id"),
             inverseJoinColumns = @JoinColumn(name = "enterprise_id"))
-    private Set<Enterprise> enterprise = new HashSet<>();
+    private Set<Enterprise> enterprises = new HashSet<>();
 
 
 }

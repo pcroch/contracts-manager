@@ -8,7 +8,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @ToString
 @Table(name = "address")

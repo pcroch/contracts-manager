@@ -1,16 +1,15 @@
 package api.contactManager.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @ToString
 @Table(name = "enterprise")
@@ -29,8 +28,9 @@ public class Enterprise {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address enterpriseAddress;
 
-    @ManyToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
-    private Set<Contact> contact;
+    @ManyToMany(mappedBy = "enterprises", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Contact> contacts;
 
 
 

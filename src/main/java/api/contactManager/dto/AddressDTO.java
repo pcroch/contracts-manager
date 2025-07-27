@@ -3,12 +3,15 @@ package api.contactManager.dto;
 import api.contactManager.domain.Contact;
 import api.contactManager.domain.Enterprise;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @ToString
 public class AddressDTO implements Serializable {
 
