@@ -34,10 +34,6 @@ public class ContactControllerV1 extends BaseRestController {
     public ResponseEntity<List<ContactDTO>> getAllContacts() {
         log.info("REST request to get all contacts");
         List<ContactDTO> response = contactService.findAll();
-        if (response == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        } else {
-            return ResponseEntity.status(HttpStatus.OK).body(contactService.findAll());
-        }  //todo if empty
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
