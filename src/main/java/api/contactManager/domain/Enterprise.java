@@ -29,8 +29,8 @@ public class Enterprise {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address enterpriseAddress;
 
-//    @ManyToMany(mappedBy = "enterpriseList", fetch = FetchType.LAZY)
-//    private Set<Contact> contactList;
+    @ManyToMany(mappedBy = "enterprise", fetch = FetchType.LAZY)
+    private Set<Contact> contact;
 
 
 

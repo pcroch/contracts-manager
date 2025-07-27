@@ -44,12 +44,12 @@ public class Contact implements Serializable {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address contactAddress;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "enterprise_contact",
-//            joinColumns = @JoinColumn(name = "contact_id"),
-//            inverseJoinColumns = @JoinColumn(name = "enterprise_id"))
-//    private Set<Enterprise> enterpriseList = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "enterprise_contact",
+            joinColumns = @JoinColumn(name = "contact_id"),
+            inverseJoinColumns = @JoinColumn(name = "enterprise_id"))
+    private Set<Enterprise> enterprise = new HashSet<>();
 
 
 }
