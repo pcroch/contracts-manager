@@ -1,6 +1,7 @@
 package api.contactManager.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -34,7 +35,7 @@ public class Contact implements Serializable {
 
     @ColumnDefault("true")
     @Column(name = "is_employee")
-    private boolean isEmployee;
+    private Boolean isEmployee;
 
     @Column(name = "tva_number")
     private String tvaNumber;

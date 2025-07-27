@@ -17,7 +17,7 @@ public class ContactDTO implements Serializable {
     private UUID id;
     private String name;
     private String lastName;
-    private boolean isEmployee;
+    private Boolean isEmployee;
     private String tvaNumber;
     private Address contactAddress;
     private Set<Enterprise> enterpriseList;
