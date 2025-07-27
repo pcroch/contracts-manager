@@ -24,11 +24,9 @@ public class ContactControllerV1 extends BaseRestController {
 
     private final ContactService contactService;
 
-    private final ContactMapper contactMapper;
-
-    public ContactControllerV1(ContactService contactService, ContactMapper contactMapper) {
+    public ContactControllerV1(ContactService contactService) {
         this.contactService = contactService;
-        this.contactMapper = contactMapper;
+
     }
 
     @GetMapping("/contacts")
@@ -38,20 +36,20 @@ public class ContactControllerV1 extends BaseRestController {
     }
 
 
-    @PostMapping("/")
+    @PostMapping("/contacts/")
     public ResponseEntity<Contact> createContact(@RequestBody ContactDTO body) {
         log.info("Create");
         return null;
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/contacts/{id}")
     public ResponseEntity<Contact> updateContact(@PathVariable("id") UUID id, @RequestBody @NonNull ContactDTO body) {
         log.info("Update");
         //todo remplace by body params
         return null;
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/contacts/{id}")
     public ResponseEntity<Integer> deleteContactPerId(@PathVariable("id") UUID id) {
         log.info("Delete");
         return null;
