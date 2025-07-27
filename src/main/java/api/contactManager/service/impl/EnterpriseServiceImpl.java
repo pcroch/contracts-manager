@@ -4,7 +4,9 @@ import api.contactManager.service.EnterpriseService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImplEnterpriseServiceImpl implements EnterpriseService {
+//@Transactional //todo
+//@Validated
+public class EnterpriseServiceImpl implements EnterpriseService {
 
 
     @Override

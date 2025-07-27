@@ -11,7 +11,7 @@ import java.util.Map;
 @Controller
 public class HealthControllerV1 extends BaseRestController {
 
-    @GetMapping("/health/")
+    @GetMapping("/health")
     public ResponseEntity<Map<String,String>> health() {
         return ResponseEntity
                 .status(HttpStatus.OK).body(Map.of("message", "Ok"));
