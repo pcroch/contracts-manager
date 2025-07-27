@@ -14,11 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
-public class ContactControllerV1 extends BaseRestController{
+public class ContactControllerV1 extends BaseRestController {
 
     private static final Logger log = LoggerFactory.getLogger(ContactControllerV1.class);
 
@@ -35,7 +33,11 @@ public class ContactControllerV1 extends BaseRestController{
     @GetMapping("/contacts")
     public ResponseEntity<List<ContactDTO>> getAllContacts() {
         log.info("REST request to get all contacts");
-        return ResponseEntity.status(HttpStatus.OK).body(contactService.findAll());
-        //todo if empty
+        List<ContactDTO> response = contactService.findAll();
+        if (response == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(contactService.findAll());
+        }  //todo if empty
     }
 }

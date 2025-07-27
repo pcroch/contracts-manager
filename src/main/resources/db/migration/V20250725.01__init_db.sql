@@ -1,2 +1,2 @@
 CREATE SCHEMA IF NOT EXISTS schema_db;
-
+--SET SCHEMA schema_db;

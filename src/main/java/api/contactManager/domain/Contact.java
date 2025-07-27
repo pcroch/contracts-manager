@@ -1,6 +1,7 @@
 package api.contactManager.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -37,7 +38,7 @@ public class Contact implements Serializable {
     @Column(name = "tva_number")
     private String tvaNumber;
 
-    @OneToOne //@OneToOne(optional = false, cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "address_id")
     private Address contactAddress;
 

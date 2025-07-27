@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS CONTACT (
+CREATE TABLE IF NOT EXISTS contact (
                         id UUID  PRIMARY KEY,
                         name VARCHAR ( 50 ) NOT NULL,
                         last_name VARCHAR ( 50 ) NOT NULL,
