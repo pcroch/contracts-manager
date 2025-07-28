@@ -1,14 +1,12 @@
 package api.contactManager.controller.template.v1;
 
 import api.contactManager.dto.ContactDTO;
-import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.service.ContactService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Slf4j
-@Controller
+@RestController
 public class ContactControllerV1 extends BaseRestController {
 
     private final ContactService contactService;

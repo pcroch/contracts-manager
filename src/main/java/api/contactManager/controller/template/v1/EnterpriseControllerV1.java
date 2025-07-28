@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Slf4j
-@Controller
+@RestController
 public class EnterpriseControllerV1 extends BaseRestController {
 
     private final EnterpriseService enterpriseService;
@@ -32,7 +32,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
     }
 
     @PutMapping(value = "/enterprise") // not patch as fully updates
-    public ResponseEntity<EnterpriseDTO> updateEnterprise(@RequestParam("id") @NonNull UUID id, @RequestBody @NonNull EnterpriseDTO body) { //todo update
+    public ResponseEntity<EnterpriseDTO> updateEnterprise(@RequestParam("id") @NonNull UUID id, @RequestBody @NonNull EnterpriseDTO body) {
         log.info("REST request to update an enterprise completely: " + body.getId());
         return ResponseEntity
                 .status(HttpStatus.OK)
