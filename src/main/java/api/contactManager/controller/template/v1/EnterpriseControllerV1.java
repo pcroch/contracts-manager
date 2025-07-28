@@ -25,7 +25,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
     }
 
     @PostMapping("/enterprise")
-    public ResponseEntity<EnterpriseDTO> createEnterprise(@RequestBody EnterpriseDTO body) {
+    public ResponseEntity<EnterpriseDTO> createEnterprise(@RequestBody @NonNull  EnterpriseDTO body) {
         log.debug("REST request to create an entreprise");
         EnterpriseDTO enterpriseDTO = this.enterpriseService.save(body);
         return ResponseEntity.status(HttpStatus.CREATED).body(enterpriseDTO);
@@ -39,7 +39,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
                 .status(HttpStatus.OK)
                 .body(enterpriseService
                         .update(body)
-                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this id :" + body.getId()))); //todo error to change
+                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this id :" + body.getId())));
 
     }
 
@@ -51,7 +51,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
                 .status(HttpStatus.FOUND)
                 .body(enterpriseService
                         .findEnterpriseByVatNumber(vatNumber)
-                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this vat number :" + vatNumber))); //todo error to change
+                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this vat number :" + vatNumber)));
     }
 
     @GetMapping("/enterprises")
