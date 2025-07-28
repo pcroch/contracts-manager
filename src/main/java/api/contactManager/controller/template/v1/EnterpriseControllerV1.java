@@ -31,24 +31,20 @@ public class EnterpriseControllerV1 extends BaseRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(enterpriseDTO);
     }
 
-    @PutMapping(value = "/enterprise/{id}")
-    public ResponseEntity<EnterpriseDTO> updateEnterprise(@PathVariable("id") UUID id, @RequestBody @NonNull EnterpriseDTO body) {
-        log.debug("REST request to update an enterprise completely  : {}, {}", id, body.getVatNumber());
-
-        if (!id.equals(body.getId())) {
-            throw new IllegalArgumentException("Invalid ID");
-        }
+    @PutMapping(value = "/enterprise")
+    public ResponseEntity<EnterpriseDTO> updateEnterprise(@RequestBody @NonNull EnterpriseDTO body) {
+        log.debug("REST request to update an enterprise completely: " + body.getId());
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(enterpriseService
                         .update(body)
-                        .orElseThrow(() -> new RuntimeException("No enterprise was found with this id :" + id))); //todo error to change
+                        .orElseThrow(() -> new RuntimeException("No enterprise was found with this id :" + body.getId()))); //todo error to change
 
     }
 
-    @PutMapping(value = "/enterprise/{vatNumber}")
-    public ResponseEntity<EnterpriseDTO> findEnterpriseByVatNumber(@PathVariable("vatNumber") String vatNumber) {
+    @GetMapping(value = "/enterprise")
+    public ResponseEntity<EnterpriseDTO> findEnterpriseByVatNumber(@RequestParam("vatNumber") String vatNumber) {
         log.debug("REST request to find an enterprise with VAT Number  : {}", vatNumber);
         //todo if null and using params instead of path variable
         return ResponseEntity

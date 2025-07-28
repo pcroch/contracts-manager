@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface ContactMapper {
+public interface ContactMapper extends EntityMapper<ContactDTO, Contact> {
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")

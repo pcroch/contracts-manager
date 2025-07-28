@@ -15,7 +15,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@ToString
 @Table(name = "contact")
 public class Contact implements Serializable {
 
@@ -50,4 +49,20 @@ public class Contact implements Serializable {
             joinColumns = @JoinColumn(name = "contact_id"),
             inverseJoinColumns = @JoinColumn(name = "enterprise_id"))
     private Set<Enterprise> enterprises = new HashSet<>();
+
+
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Contact{" +
+//                "id=" + id +
+//                ", firstName='" + lastName + '\'' +
+//                ", enterprises=" + lastName +
+//                '}';
+//    }
 }

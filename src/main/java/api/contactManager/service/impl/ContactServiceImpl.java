@@ -6,7 +6,9 @@ import api.contactManager.mapper.ContactMapper;
 import api.contactManager.repository.ContactRepository;
 import api.contactManager.service.ContactService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -14,7 +16,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-//@Transactional //todo
+//@Transactional
 //@Validated
 public class ContactServiceImpl implements ContactService {
 

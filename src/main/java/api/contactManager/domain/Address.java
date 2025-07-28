@@ -12,7 +12,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@ToString
 @Table(name = "address")
 public class Address implements Serializable {
 
@@ -52,4 +51,19 @@ public class Address implements Serializable {
     @JsonIgnore
     private Enterprise enterprise;
 
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + getId() +
+                ", road='" + getBoxNumber() + "'" +
+                ", postBdox=" + getLocality() +
+                ", houseNumber=" + getLocality() +
+                "}";
+    }
 }

@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface AddressMapper {
+public interface AddressMapper extends EntityMapper<AddressDTO, Address> {
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "streetNumber", target = "streetNumber")

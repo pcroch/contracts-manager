@@ -8,14 +8,16 @@ import api.contactManager.mapper.EnterpriseMapper;
 import api.contactManager.repository.EnterpriseRepository;
 import api.contactManager.service.EnterpriseService;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-//@Transactional //todo
+//@Transactional
 //@Validated
 public class EnterpriseServiceImpl implements EnterpriseService {
 
@@ -54,9 +56,9 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     public Optional<EnterpriseDTO> update(EnterpriseDTO enterpriseDTO) {
         return enterpriseRepository
                 .findById(enterpriseDTO.getId())
-                .map(contact -> {
-                            enterpriseMapper.toMap(enterpriseDTO);
-                            return contact;
+                .map(enterprise -> {
+                            enterpriseMapper.update(enterprise,enterpriseDTO);
+                            return enterprise;
                         }
                 )
                 .map(enterpriseRepository::save)
@@ -71,7 +73,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             return Optional.empty();
         }
         return enterpriseRepository
-                .findOneByVatNumber(vatNumber)
+                .findByVatNumber(vatNumber)
                 .map(enterpriseMapper::toDomain);
     }
 
