@@ -62,7 +62,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         return enterpriseRepository
                 .findById(enterpriseDTO.getId())
                 .map(enterprise -> {
-                            enterpriseMapper.update(enterprise,enterpriseDTO);
+                            enterpriseMapper.update(enterprise, enterpriseDTO);
                             return enterprise;
                         }
                 )
@@ -84,34 +84,21 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     @Override
     @Transactional
-    public ContactDTO addContactToEnterprise(UUID enterpriseId, UUID contactId) {
+    public EnterpriseDTO addContactToEnterprise(UUID enterpriseId, UUID contactId) {
 
         Enterprise enterprise = enterpriseRepository.findById(enterpriseId)
                 .orElseThrow(() -> new RuntimeException("No enterprise was found with this id: " + enterpriseId));
 
-       Contact contact =  contactRepository
+        Contact contact = contactRepository
                 .findById(contactId)
-                .orElseThrow(() -> new RuntimeException("No Contact was found with this id: " + contactId));;
+                .orElseThrow(() -> new RuntimeException("No Contact was found with this id: " + contactId));
+        contact.getEnterprises().add(enterprise);
+        contactRepository.save(contact);
 
-//        enterprise.addContact(contact);
-//
-//        enterpriseRepository.save(enterprise);
-//        return enterpriseMapper.toDomain(enterprise);
+        Enterprise updateEnterprise = enterpriseRepository.findById(enterpriseId)
+                .orElseThrow(() -> new RuntimeException("No enterprise was found with this id: " + enterpriseId));
 
-        if (contact.getEnterprises().add(enterprise)) {
-            enterprise.getContacts().add(contact);
-            System.out.println("Enterprise " + enterprise.getVatNumber() + " added to Contact " + contact.getName());
-        } else {
-            System.out.println("Enterprise " + enterprise.getVatNumber() + " was already associated with Contact " + contact.getName());
-        }
-
-        // 4. Sauvegarder le Contact (car Contact est le côté propriét
-        Contact updatedContact = contactRepository.save(contact);
-
-        // 5. Mapper et retourner le DTO du contact mis à jour
-        return contactMapper.toDomain(updatedContact);
+        return enterpriseMapper.toDomain(updateEnterprise);
 
     }
-
-//enterprise.setContacts(Set.of(contactMapper.toMap(contactDTO)))
 }

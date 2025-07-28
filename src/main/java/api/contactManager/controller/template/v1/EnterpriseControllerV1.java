@@ -61,7 +61,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
     }
 
     @PostMapping("/enterprise/addContact")
-    public ResponseEntity<ContactDTO> addContactByEnterprise(@RequestParam("enterpriseId") UUID enterpriseId, @RequestParam("contactId") UUID contactId) {
+    public ResponseEntity<EnterpriseDTO> addContactByEnterprise(@RequestParam("enterpriseId") UUID enterpriseId, @RequestParam("contactId") UUID contactId) {
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
                 .body(enterpriseService
