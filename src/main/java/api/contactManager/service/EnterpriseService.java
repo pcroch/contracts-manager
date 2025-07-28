@@ -12,7 +12,7 @@ public interface EnterpriseService {
 
     List<EnterpriseDTO> findAll();
 
-    Optional<EnterpriseDTO> update(EnterpriseDTO enterpriseDTO);
+    EnterpriseDTO update(EnterpriseDTO enterpriseDTO);
 
     EnterpriseDTO save(@Valid EnterpriseDTO enterpriseDTO);
 

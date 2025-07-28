@@ -27,8 +27,9 @@ public class EnterpriseControllerV1 extends BaseRestController {
     @PostMapping("/enterprise")
     public ResponseEntity<EnterpriseDTO> createEnterprise(@RequestBody @NonNull EnterpriseDTO body) {
         log.info("REST request to create an entreprise");
-        EnterpriseDTO enterpriseDTO = this.enterpriseService.save(body);
-        return ResponseEntity.status(HttpStatus.CREATED).body(enterpriseDTO);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(enterpriseService.save(body));
     }
 
     @PutMapping(value = "/enterprise")
@@ -36,23 +37,24 @@ public class EnterpriseControllerV1 extends BaseRestController {
         log.info("REST request to update an enterprise completely: " + body.getId());
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(enterpriseService
-                        .update(body)
-                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this id :" + body.getId()))); //todo error to be nmoved to the service
+                .body(enterpriseService.update(body));
 
     }
 
     @GetMapping(value = "/enterprise")
     public ResponseEntity<EnterpriseDTO> findEnterpriseByVatNumber(@NonNull @RequestParam("vatNumber") String vatNumber) {
         log.info("REST request to find an enterprise with VAT Number  : {}", vatNumber);
-        EnterpriseDTO enterpriseDTO = enterpriseService.findEnterpriseByVatNumber(vatNumber);
-        return ResponseEntity.status(HttpStatus.OK).body(enterpriseDTO);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(enterpriseService.findEnterpriseByVatNumber(vatNumber));
     }
 
     @GetMapping("/enterprises")
     public ResponseEntity<List<EnterpriseDTO>> getAllEnterprises() {
         log.info("REST request to get all enterprises");
-        return ResponseEntity.status(HttpStatus.OK).body(enterpriseService.findAll());
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(enterpriseService.findAll());
     }
 
     @PostMapping("/enterprise/addContact")

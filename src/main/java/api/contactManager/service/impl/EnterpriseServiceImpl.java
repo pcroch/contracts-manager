@@ -61,7 +61,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public Optional<EnterpriseDTO> update(EnterpriseDTO enterpriseDTO) {
+    public EnterpriseDTO update(EnterpriseDTO enterpriseDTO) {
         return enterpriseRepository
                 .findById(enterpriseDTO.getId())
                 .map(enterprise -> {
@@ -70,9 +70,10 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                         }
                 )
                 .map(enterpriseRepository::save)
-                .map(enterpriseMapper::toDomain);
+                .map(enterpriseMapper::toDomain)
+                .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this id :" + enterpriseDTO.getId()));
     }
-
+//
     @Override
     public EnterpriseDTO findEnterpriseByVatNumber(String vatNumber) {
       Enterprise  enterprise =    enterpriseRepository
