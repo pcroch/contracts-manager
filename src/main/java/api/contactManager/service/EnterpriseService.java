@@ -1,6 +1,5 @@
 package api.contactManager.service;//package api.contactManager.service;
 
-import api.contactManager.domain.Contact;
 import api.contactManager.dto.ContactDTO;
 import api.contactManager.dto.EnterpriseDTO;
 

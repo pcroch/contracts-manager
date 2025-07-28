@@ -1,12 +1,10 @@
 package api.contactManager.service.impl;//package api.contactManager.service.impl;
 
-import api.contactManager.domain.Contact;
 import api.contactManager.domain.Enterprise;
 import api.contactManager.dto.ContactDTO;
 import api.contactManager.dto.EnterpriseDTO;
 import api.contactManager.mapper.ContactMapper;
 import api.contactManager.mapper.EnterpriseMapper;
-import api.contactManager.repository.ContactRepository;
 import api.contactManager.repository.EnterpriseRepository;
 import api.contactManager.service.EnterpriseService;
 import org.springframework.stereotype.Service;
