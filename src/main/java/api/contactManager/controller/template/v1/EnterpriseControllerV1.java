@@ -71,6 +71,4 @@ public class EnterpriseControllerV1 extends BaseRestController {
                 .body(enterpriseService
                         .addContactToEnterprise(uuid, body));
     }
-
-
 }
