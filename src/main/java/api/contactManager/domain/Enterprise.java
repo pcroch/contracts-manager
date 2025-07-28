@@ -11,7 +11,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@ToString
 @Table(name = "enterprise")
 public class Enterprise {
 
@@ -34,6 +33,21 @@ public class Enterprise {
 
     public void addContact(Contact contact) {
         contacts.add(contact);
-//        contact.setEnterprises(this);
+        this.setContacts(contacts);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return "Enterprise{" +
+                "id=" + id +
+                ", firstName='" + vatNumber + '\'' +
+                ", enterprises=" + vatNumber +
+                '}';
     }
 }

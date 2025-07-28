@@ -12,7 +12,8 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@ToString(exclude = {"enterprises"})
+//@NoArgsConstructor
+//@ToString(exclude = {"enterprises"})
 public class ContactDTO implements Serializable {
 
     private UUID id;

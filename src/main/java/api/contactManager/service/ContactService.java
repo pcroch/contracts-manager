@@ -2,6 +2,8 @@ package api.contactManager.service;//package api.contactManager.service;
 
 
 import api.contactManager.dto.ContactDTO;
+import api.contactManager.dto.EnterpriseDTO;
+import api.contactManager.service.common.CrudService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,15 +12,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ContactService {
+public interface ContactService extends CrudService<ContactDTO, UUID>  {
 
     List<ContactDTO> findAll();
 
-
     ContactDTO save(@Valid ContactDTO contactDTO);
 
-    Optional<ContactDTO> update(ContactDTO contactDTO);
+    ContactDTO update(UUID ID, ContactDTO contactDTO);
 
-    Optional<String> delete(UUID uuid);
+    void delete(UUID uuid);
 
 }

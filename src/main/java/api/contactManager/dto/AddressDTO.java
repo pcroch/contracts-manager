@@ -2,17 +2,14 @@ package api.contactManager.dto;
 
 import api.contactManager.domain.Contact;
 import api.contactManager.domain.Enterprise;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
 @Setter
-@ToString
+//@NoArgsConstructor
 public class AddressDTO implements Serializable {
 
     private UUID id;

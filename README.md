@@ -13,9 +13,16 @@ you can connect via: http://localhost:8080/h2-console/
 
 Using those settings: 
 
+![img.png](img.png)
+
+ Driver:
+    
     org.h2.Driver
 
-    jdbc:h2:file:./contact_manager_db 
+ URL:
+    
+    jdbc:h2:mem:contact_manager_db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+   
 
 ### Spring Boot
 
@@ -33,22 +40,16 @@ In case of conflict with a port you can change the default port 8080 to the desi
 
 ### How to fetch:
 
-## Dummy Endpoint:
+## Health Endpoint:
 
-    curl http://localhost:8080/v1/pingController/ping
+    curl http://localhost:8080/api/v1/health
 
 ## Should respond:
 
-    pingController Ping
+``` 
+{ 
+    "status": "UP"  
+} 
+```
 
-# Others
 
-### Getting the application tree
-
-*with depth limit and with files*
-
-    tree -L 5 /path-to-project/IdeaProjects/contact-manager/src
-
-*without depth limit and without files*
-
-    tree -d  /path-to-project/IdeaProjects/contact-manager/src
