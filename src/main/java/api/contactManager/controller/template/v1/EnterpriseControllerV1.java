@@ -1,7 +1,6 @@
 package api.contactManager.controller.template.v1;
 
 
-import api.contactManager.dto.ContactDTO;
 import api.contactManager.dto.EnterpriseDTO;
 import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.service.EnterpriseService;
@@ -45,7 +44,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
     }
 
     @GetMapping(value = "/enterprise")
-    public ResponseEntity<EnterpriseDTO> findEnterpriseByVatNumber(@RequestParam("vatNumber") String vatNumber) {
+    public ResponseEntity<EnterpriseDTO> findEnterpriseByVatNumber(@NonNull @RequestParam("vatNumber") String vatNumber) {
         log.debug("REST request to find an enterprise with VAT Number  : {}", vatNumber);
         //todo if null and using params instead of path variable
         return ResponseEntity
@@ -62,7 +61,8 @@ public class EnterpriseControllerV1 extends BaseRestController {
     }
 
     @PostMapping("/enterprise/addContact")
-    public ResponseEntity addContactByEnterprise(@RequestParam("enterpriseId") UUID enterpriseId, @RequestParam("contactId") UUID contactId) {
+    public ResponseEntity addContactByEnterprise(@NonNull @RequestParam("enterpriseId") UUID enterpriseId, @NonNull @RequestParam("contactId") UUID contactId) {
+        log.info("REST request to add contact to an enterprises");
         enterpriseService.addContactToEnterprise(enterpriseId, contactId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

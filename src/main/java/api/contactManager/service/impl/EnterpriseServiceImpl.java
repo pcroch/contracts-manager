@@ -10,6 +10,7 @@ import api.contactManager.mapper.EnterpriseMapper;
 import api.contactManager.repository.ContactRepository;
 import api.contactManager.repository.EnterpriseRepository;
 import api.contactManager.service.EnterpriseService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -19,6 +20,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 //@Transactional
 //@Validated
@@ -95,5 +97,6 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                 .orElseThrow(() -> new ResourceNotFoundException("No Contact was found with this id: " + contactId));
         contact.getEnterprises().add(enterprise);
         contactRepository.save(contact);
+        log.debug("the contact {} was added to the enterprise {}", contactId, enterpriseId);
     }
 }
