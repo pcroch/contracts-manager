@@ -24,7 +24,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
         this.enterpriseService = enterpriseService;
     }
 
-    @PostMapping("/enterprises")
+    @PostMapping("/enterprise")
     public ResponseEntity<EnterpriseDTO> createEnterprise(@RequestBody EnterpriseDTO body) {
         log.debug("REST request to create an entreprise");
         EnterpriseDTO enterpriseDTO = this.enterpriseService.save(body);
@@ -60,11 +60,11 @@ public class EnterpriseControllerV1 extends BaseRestController {
         return ResponseEntity.status(HttpStatus.OK).body(enterpriseService.findAll());
     }
 
-    @PostMapping("/enterprise/addContact/{uuid}\"")
-    public ResponseEntity<EnterpriseDTO> addContactByEnterprise(@PathVariable("uuid") UUID uuid, @RequestBody ContactDTO body) {
+    @PostMapping("/enterprise/addContact")
+    public ResponseEntity<ContactDTO> addContactByEnterprise(@RequestParam("enterpriseId") UUID enterpriseId, @RequestParam("contactId") UUID contactId) {
         return ResponseEntity
-                .status(HttpStatus.FOUND)
+                .status(HttpStatus.ACCEPTED)
                 .body(enterpriseService
-                        .addContactToEnterprise(uuid, body));
+                        .addContactToEnterprise(enterpriseId, contactId));
     }
 }

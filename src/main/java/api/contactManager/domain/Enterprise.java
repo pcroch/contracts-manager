@@ -33,7 +33,7 @@ public class Enterprise {
 
     public void addContact(Contact contact) {
         contacts.add(contact);
-//        contact.setEnterprises(this);
+        this.setContacts(contacts);
     }
 
 
