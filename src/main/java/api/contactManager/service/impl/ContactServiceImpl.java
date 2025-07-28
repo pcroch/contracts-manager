@@ -7,6 +7,7 @@ import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.mapper.ContactMapper;
 import api.contactManager.repository.ContactRepository;
 import api.contactManager.service.ContactService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -17,8 +18,9 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 
+@Slf4j
 @Service
-//@Transactional
+//@Transactional //todo que faire
 //@Validated
 public class ContactServiceImpl implements ContactService {
 
@@ -40,7 +42,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public ContactDTO save(ContactDTO contactDTO) {
+    public ContactDTO save(ContactDTO contactDTO) { //todo to refactor
 
         Contact contact = contactMapper.toMap(contactDTO);
 
@@ -58,6 +60,8 @@ public class ContactServiceImpl implements ContactService {
 
         return contactRepository
                 .findById(contactDTO.getId())
+
+
                 .map(contact -> {
                             contactMapper.update(contact, contactDTO);
                             return contact;
@@ -69,13 +73,11 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Optional<String> delete(UUID uuid) {
-        return contactRepository.findById(uuid)
-                .map(contact -> {
-                    String name = contact.getName();
-                    String lastname = contact.getLastName();
-                    contactRepository.delete(contact);
-                    return name + lastname + " has been successfully deleted!";
-                });
+    public void delete(UUID uuid) {
+        Contact contact = contactRepository
+                .findById(uuid)
+                .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + uuid));
+        contactRepository.delete(contact);
+        log.info("the contact {} was deleted  permanently", uuid);
     }
 }

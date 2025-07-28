@@ -52,12 +52,11 @@ public class ContactControllerV1 extends BaseRestController {
     }
 
 
-    @DeleteMapping(value = "/contacts/{id}")
-    public ResponseEntity<Map<String, String>>  deleteContactPerId(@PathVariable("id") UUID id) {
+    @DeleteMapping(value = "/contact")
+    public ResponseEntity  deleteContactPerId(@RequestParam("id") UUID id) {
         log.info("REST request to delete contact : {}", id);
+        contactService.delete(id);
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(Map.of("message", contactService.delete(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + id))));
+                .status(HttpStatus.NO_CONTENT).build();
     }
 }

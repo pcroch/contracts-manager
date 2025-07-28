@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-//@Transactional
+//@Transactional //todo que faire avec
 //@Validated
 public class EnterpriseServiceImpl implements EnterpriseService {
 
@@ -54,7 +54,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     @Override
     public EnterpriseDTO save(EnterpriseDTO enterpriseDTO) {
-        Enterprise enterprise = enterpriseMapper.toMap(enterpriseDTO);
+        Enterprise enterprise = enterpriseMapper.toMap(enterpriseDTO); //todo to refactor
 
         enterprise = enterpriseRepository.save(enterprise);
 

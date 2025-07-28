@@ -16,11 +16,10 @@ public interface ContactService extends CrudService<ContactDTO, UUID>  {
 
     List<ContactDTO> findAll();
 
-
     ContactDTO save(@Valid ContactDTO contactDTO);
 
     ContactDTO update(UUID ID, ContactDTO contactDTO);
 
-    Optional<String> delete(UUID uuid);
+    void delete(UUID uuid);
 
 }
