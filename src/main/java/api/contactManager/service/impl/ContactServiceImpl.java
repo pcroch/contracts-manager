@@ -8,8 +8,9 @@ import api.contactManager.service.ContactService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
-
 
 
 @Service
@@ -34,4 +35,40 @@ public class ContactServiceImpl implements ContactService {
                 .map(contactMapper::toDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public ContactDTO save(ContactDTO contactDTO) {
+
+        Contact contact = contactMapper.toMap(contactDTO);
+
+        contact = contactRepository.save(contact);
+
+        return contactMapper.toDomain(contact);
+    }
+
+    @Override
+    public Optional<ContactDTO> update(ContactDTO contactDTO) {
+        return contactRepository
+                .findById(contactDTO.getId())
+                .map(contact -> {
+                            contactMapper.toMap(contactDTO);
+                            return contact;
+                        }
+                )
+                .map(contactRepository::save)
+                .map(contactMapper::toDomain);
+    }
+
+    @Override
+    public Optional<String> delete(UUID uuid) {
+        return contactRepository.findById(uuid)
+                .map(contact -> {
+                    String name = contact.getName();
+                    String lastname = contact.getLastName();
+                    contactRepository.delete(contact);
+                    return name + lastname + " has been successfully deleted!";
+                });
+    }
+
+    ;
 }
