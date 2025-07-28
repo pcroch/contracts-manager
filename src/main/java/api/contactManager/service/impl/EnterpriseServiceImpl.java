@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 //@Validated
 public class EnterpriseServiceImpl implements EnterpriseService {
 
-
     private final EnterpriseRepository enterpriseRepository;
 
     private final EnterpriseMapper enterpriseMapper;
@@ -41,7 +40,6 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                 .map(enterpriseMapper::toDomain)
                 .collect(Collectors.toList());
     }
-
 
     @Override
     public EnterpriseDTO save(EnterpriseDTO enterpriseDTO) {
