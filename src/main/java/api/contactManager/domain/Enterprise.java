@@ -21,8 +21,8 @@ public class Enterprise {
     private UUID id;
 
     @NotNull(message = "tva number is a a required field.")
-    @Column(name = "tva_number")
-    private String tvaNumber;
+    @Column(name = "vat_number")
+    private String vatNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
@@ -31,4 +31,9 @@ public class Enterprise {
     @ManyToMany(mappedBy = "enterprises", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Contact> contacts;
+
+    public void addContact(Contact contact) {
+        contacts.add(contact);
+//        contact.setEnterprises(this);
+    }
 }
