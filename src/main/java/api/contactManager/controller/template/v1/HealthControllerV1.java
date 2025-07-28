@@ -14,7 +14,7 @@ public class HealthControllerV1 extends BaseRestController {
     @GetMapping("/health")
     public ResponseEntity<Map<String,String>> health() {
         return ResponseEntity
-                .status(HttpStatus.OK).body(Map.of("message", "Ok"));
+                .status(HttpStatus.OK).body(Map.of("Status", "Up"));
     }
 
 }
