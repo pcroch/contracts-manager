@@ -31,21 +31,31 @@ public class EnterpriseControllerV1 extends BaseRestController{
         this.enterpriseService = enterpriseService;
     }
 
-    @PostMapping("/enterprises/")
-    public ResponseEntity<Contact> createEnterprise(@RequestBody ContactDTO body) {
-        log.info("Create");
-        return null;
+    @PostMapping("/enterprises")
+    public ResponseEntity<EnterpriseDTO> createEnterprise(@RequestBody EnterpriseDTO body) {
+        log.debug("REST request to create an entreprise");
+        EnterpriseDTO enterpriseDTO = this.enterpriseService.save(body);
+        return ResponseEntity.status(HttpStatus.CREATED).body(enterpriseDTO);
     }
 
-    @PutMapping(value = "/enterprises/{id}")
-    public ResponseEntity<Contact> updateEnterprise(@PathVariable("id") UUID id, @RequestBody @NonNull ContactDTO body) {
-        log.info("Update");
-        //todo remplace by body params
-        return null;
+    @PutMapping(value = "/enterprise/{id}")
+    public ResponseEntity<EnterpriseDTO> updateEnterprise(@PathVariable("id") UUID id, @RequestBody @NonNull EnterpriseDTO body) {
+        log.debug("REST request to update an enterprise completely  : {}, {}", id, body.getTvaNumber());
+
+        if (!id.equals(body.getId())) {
+            throw new IllegalArgumentException("Invalid ID");
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(enterpriseService
+                        .update(body)
+                        .orElseThrow(() -> new RuntimeException("No enterprise was found with this id :" + id))); //todo error to change
+
     }
 
-    @PutMapping(value = "/enterprises/{vat}")
-    public ResponseEntity<Contact> findEnterpriseByVatNumber(@PathVariable("vat") UUID id, @RequestBody @NonNull ContactDTO body) {
+    @PutMapping(value = "/enterprises/{vatNumber}")
+    public ResponseEntity<Contact> findEnterpriseByVatNumber(@PathVariable("vatNumber") UUID id, @RequestBody @NonNull EnterpriseDTO body) {
         log.info("Update");
         //todo remplace by body params
         return null;
@@ -53,7 +63,7 @@ public class EnterpriseControllerV1 extends BaseRestController{
 
     @GetMapping("/enterprises")
     public ResponseEntity<List<EnterpriseDTO>> getAllEnterprises() {
-        log.info("REST request to get all contacts");
+        log.info("REST request to get all enterprises");
         return ResponseEntity.status(HttpStatus.OK).body(enterpriseService.findAll());
     }
 

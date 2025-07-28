@@ -52,7 +52,7 @@ public class ContactControllerV1 extends BaseRestController {
                 .status(HttpStatus.OK)
                 .body(contactService
                         .update(body)
-                        .orElseThrow(() -> new RuntimeException("No model was found with this id :" + id))); //todo error to change
+                        .orElseThrow(() -> new RuntimeException("No contact was found with this id :" + id))); //todo error to change
 
     }
 
