@@ -12,5 +12,4 @@ import java.util.UUID;
 public interface EnterpriseRepository extends JpaRepository<Enterprise, UUID> {
     Optional<Enterprise> findOneByVatNumber(String vatNumber);
 
-    Enterprise addContact(Contact contact);
- }
+}

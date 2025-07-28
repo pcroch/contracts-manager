@@ -40,7 +40,7 @@ public class EnterpriseControllerV1 extends BaseRestController{
 
     @PutMapping(value = "/enterprise/{id}")
     public ResponseEntity<EnterpriseDTO> updateEnterprise(@PathVariable("id") UUID id, @RequestBody @NonNull EnterpriseDTO body) {
-        log.debug("REST request to update an enterprise completely  : {}, {}", id, body.getTvaNumber());
+        log.debug("REST request to update an enterprise completely  : {}, {}", id, body.getVatNumber());
 
         if (!id.equals(body.getId())) {
             throw new IllegalArgumentException("Invalid ID");

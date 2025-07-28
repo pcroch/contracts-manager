@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +27,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     private final EnterpriseMapper enterpriseMapper;
 
     private final ContactMapper contactMapper;
+
 
     public EnterpriseServiceImpl(EnterpriseRepository enterpriseRepository, EnterpriseMapper enterpriseMapper, ContactMapper contactMapper) {
         this.enterpriseRepository = enterpriseRepository;
@@ -78,9 +80,13 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public EnterpriseDTO addContactToEnterprise(ContactDTO contactDTO) {
-        Enterprise enterprise = enterpriseRepository
-                .addContact(contactMapper.toMap(contactDTO));
+    public EnterpriseDTO addContactToEnterprise(UUID enterpriseId, ContactDTO contactDTO) {
+
+        Enterprise enterprise = enterpriseRepository.findById(enterpriseId)
+                .orElseThrow(() -> new RuntimeException("No enterprise was found with this id: " + enterpriseId));
+
+        enterprise.addContact(contactMapper.toMap(contactDTO));
+        enterpriseRepository.save(enterprise);
         return enterpriseMapper.toDomain(enterprise);
     }
 

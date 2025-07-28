@@ -36,8 +36,8 @@ public class Contact implements Serializable {
     @Column(name = "is_employee")
     private Boolean isEmployee;
 
-    @Column(name = "tva_number")
-    private String tvaNumber;
+    @Column(name = "vat_number")
+    private String vatNumber;
 
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")

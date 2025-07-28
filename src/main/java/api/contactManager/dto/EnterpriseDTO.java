@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class EnterpriseDTO implements Serializable {
 
     private UUID id;
-    private String tvaNumber;
+    private String vatNumber;
     private Address enterpriseAddress;
     private Set<Contact> contacts;
 }
