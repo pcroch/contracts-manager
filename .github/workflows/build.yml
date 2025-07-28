@@ -20,6 +20,60 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: Build with Maven
-        run: mvn -B clean install -Dspring.profiles.active=test
-        
+      - name: Build with Maven and Generate JaCoCo Report
+        # Le goal 'jacoco:report' est ajouté ici.
+        # Il est généralement attaché à la phase 'verify' ou 'test' dans le pom.xml,
+        # mais l'appeler explicitement après 'install' assure sa génération.
+        # Vous pouvez aussi l'attacher à 'test' dans votre pom.xml et juste faire 'mvn clean verify'.
+        run: mvn -B clean install -Dspring.profiles.active=test jacoco:report
+
+      - name: Upload JaCoCo Report as Artifact
+        # Ceci rend le rapport HTML accessible dans l'onglet 'Artifacts' de votre workflow.
+        uses: actions/upload-artifact@v2
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/html # Chemin par défaut pour le rapport HTML
+
+      - name: Get JaCoCo Coverage Percentage
+        # Cette étape utilise un script pour extraire le pourcentage de couverture du rapport XML.
+        # Assurez-vous que votre 'jacoco:report' génère aussi un XML (c'est le cas par défaut).
+        id: jacoco_coverage
+        run: |
+          # Le chemin par défaut pour le rapport XML est target/site/jacoco/jacoco.xml
+          # Ce script simple extrait le pourcentage de ligne couverte.
+          # Vous devrez peut-être ajuster le chemin ou l'expression XPath/regex si votre rapport XML est différent.
+          COVERAGE_PERCENTAGE=$(awk -F'[<>]' '/<counter type="LINE"/{print $10}' target/site/jacoco/jacoco.xml | cut -d' ' -f1)
+          echo "::set-output name=percentage::$COVERAGE_PERCENTAGE"
+
+      - name: Create or Update Coverage Badge
+        # Cette action utilise le pourcentage extrait pour créer/mettre à jour un badge.
+        # Vous devrez configurer cette action avec les détails de votre dépôt et le chemin du badge.
+        # Exemple avec 'istanbul-badges-action' ou 'simple-badges' (peut nécessiter une configuration spécifique)
+        uses: schneegans/dynamic-badges-action@v1.0.0
+        with:
+          badge_name: 'Code Coverage'
+          label: 'Coverage'
+          # Utilise la sortie de l'étape précédente
+          message: ${{ steps.jacoco_coverage.outputs.percentage }}%
+          # Définir la couleur en fonction du pourcentage
+          color: |
+            ${{ steps.jacoco_coverage.outputs.percentage > 80 && 'green' || '' }}
+            ${{ steps.jacoco_coverage.outputs.percentage <= 80 && steps.jacoco_coverage.outputs.percentage > 50 && 'orange' || '' }}
+            ${{ steps.jacoco_coverage.outputs.percentage <= 50 && 'red' || '' }}
+          # Chemin vers le fichier README.md où le badge sera mis à jour
+          # Nécessite un jeton GITHUB_TOKEN avec des permissions d'écriture sur les contenus
+          # et un push vers la branche (souvent 'main').
+          # Assurez-vous que la branche est 'main' ou celle que vous voulez mettre à jour.
+          # Vous devrez peut-être aussi ajouter 'persist_badge: true' et 'file_path: README.md'
+          # en fonction de l'action spécifique que vous utilisez.
+          # Pour que cela fonctionne, vous avez besoin que l'action pousse les changements.
+          # Une action comme 'simple-badges' ou 'istanbul-badges-action' est plus adaptée.
+          # Voici un exemple avec 'simple-badges':
+          # uses: simonireton/simple-badges@v2
+          # with:
+          #   badge_name: 'coverage'
+          #   badge_value: ${{ steps.jacoco_coverage.outputs.percentage }}%
+          #   github_token: ${{ secrets.GITHUB_TOKEN }}
+          #   path: README.md
+          #   label: 'Coverage'
+          #   color_thresholds: '80=green,50=orange,0=red'
