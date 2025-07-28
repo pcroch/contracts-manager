@@ -1,17 +1,13 @@
 name: jacoco_badge
 
 on:
-  pull_request:
-    branches: [ "main" ]
   push:
-    branches:
-      - '**'
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-  permissions:
-    contents: write
+
     steps:
       - uses: actions/checkout@v2
 
