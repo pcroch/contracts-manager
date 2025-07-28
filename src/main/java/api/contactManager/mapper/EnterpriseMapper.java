@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 public interface EnterpriseMapper {
 
     @Mapping(source = "id", target = "id")
-    @Mapping(source = "tvaNumber", target = "tvaNumber")
+    @Mapping(source = "vatNumber", target = "vatNumber")
     @Mapping(source = "enterpriseAddress", target = "enterpriseAddress")
     @Mapping(source = "contacts", target = "contacts")
     EnterpriseDTO toDomain(Enterprise e);

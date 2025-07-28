@@ -27,7 +27,6 @@ public class ContactServiceImpl implements ContactService {
         this.contactMapper = contactMapper;
     }
 
-
     @Override
     public List<ContactDTO> findAll() {
         return contactRepository.findAll()
@@ -69,6 +68,4 @@ public class ContactServiceImpl implements ContactService {
                     return name + lastname + " has been successfully deleted!";
                 });
     }
-
-    ;
 }

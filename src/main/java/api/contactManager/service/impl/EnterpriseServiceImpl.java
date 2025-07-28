@@ -1,15 +1,17 @@
 package api.contactManager.service.impl;//package api.contactManager.service.impl;
 
+import api.contactManager.domain.Enterprise;
 import api.contactManager.dto.ContactDTO;
 import api.contactManager.dto.EnterpriseDTO;
 import api.contactManager.mapper.ContactMapper;
 import api.contactManager.mapper.EnterpriseMapper;
-import api.contactManager.repository.ContactRepository;
 import api.contactManager.repository.EnterpriseRepository;
 import api.contactManager.service.EnterpriseService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,14 +19,17 @@ import java.util.stream.Collectors;
 //@Validated
 public class EnterpriseServiceImpl implements EnterpriseService {
 
-
     private final EnterpriseRepository enterpriseRepository;
 
     private final EnterpriseMapper enterpriseMapper;
 
-    public EnterpriseServiceImpl(EnterpriseRepository enterpriseRepository, EnterpriseMapper enterpriseMapper) {
+    private final ContactMapper contactMapper;
+
+
+    public EnterpriseServiceImpl(EnterpriseRepository enterpriseRepository, EnterpriseMapper enterpriseMapper, ContactMapper contactMapper) {
         this.enterpriseRepository = enterpriseRepository;
         this.enterpriseMapper = enterpriseMapper;
+        this.contactMapper = contactMapper;
     }
 
 
@@ -35,5 +40,51 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                 .map(enterpriseMapper::toDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public EnterpriseDTO save(EnterpriseDTO enterpriseDTO) {
+        Enterprise enterprise = enterpriseMapper.toMap(enterpriseDTO);
+
+        enterprise = enterpriseRepository.save(enterprise);
+
+        return enterpriseMapper.toDomain(enterprise);
+    }
+
+    @Override
+    public Optional<EnterpriseDTO> update(EnterpriseDTO enterpriseDTO) {
+        return enterpriseRepository
+                .findById(enterpriseDTO.getId())
+                .map(contact -> {
+                            enterpriseMapper.toMap(enterpriseDTO);
+                            return contact;
+                        }
+                )
+                .map(enterpriseRepository::save)
+                .map(enterpriseMapper::toDomain);
+    }
+
+    @Override
+    public Optional<EnterpriseDTO> findEnterpriseByVatNumber(String vatNumber) {
+
+        if (vatNumber == null || vatNumber.trim().isEmpty()) {
+            // Or throw an IllegalArgumentException
+            return Optional.empty();
+        }
+        return enterpriseRepository
+                .findOneByVatNumber(vatNumber)
+                .map(enterpriseMapper::toDomain);
+    }
+
+    @Override
+    public EnterpriseDTO addContactToEnterprise(UUID enterpriseId, ContactDTO contactDTO) {
+
+        Enterprise enterprise = enterpriseRepository.findById(enterpriseId)
+                .orElseThrow(() -> new RuntimeException("No enterprise was found with this id: " + enterpriseId));
+
+        enterprise.addContact(contactMapper.toMap(contactDTO));
+        enterpriseRepository.save(enterprise);
+        return enterpriseMapper.toDomain(enterprise);
+    }
+
 
 }

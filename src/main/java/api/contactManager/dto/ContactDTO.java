@@ -19,7 +19,7 @@ public class ContactDTO implements Serializable {
     private String name;
     private String lastName;
     private Boolean isEmployee;
-    private String tvaNumber;
+    private String vatNumber;
     private Address contactAddress;
     private Set<Enterprise> enterprises;
 }

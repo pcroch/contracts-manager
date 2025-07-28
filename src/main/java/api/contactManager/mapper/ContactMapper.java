@@ -12,7 +12,7 @@ public interface ContactMapper {
     @Mapping(source = "name", target = "name")
     @Mapping(source = "lastName", target = "lastName")
     @Mapping(source = "isEmployee", target = "isEmployee")
-    @Mapping(source = "tvaNumber", target = "tvaNumber")
+    @Mapping(source = "vatNumber", target = "vatNumber")
     @Mapping(source = "contactAddress", target = "contactAddress")
     @Mapping(source = "enterprises", target = "enterprises")
 
