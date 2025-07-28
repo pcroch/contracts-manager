@@ -2,6 +2,7 @@ package api.contactManager.controller.template.v1;
 
 import api.contactManager.domain.Contact;
 import api.contactManager.dto.ContactDTO;
+import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.service.ContactService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -52,17 +53,17 @@ public class ContactControllerV1 extends BaseRestController {
                 .status(HttpStatus.OK)
                 .body(contactService
                         .update(body)
-                        .orElseThrow(() -> new RuntimeException("No contact was found with this id :" + id))); //todo error to change
+                        .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + id))); //todo error to change
 
     }
 
 
     @DeleteMapping(value = "/contacts/{id}")
     public ResponseEntity<Map<String, String>>  deleteContactPerId(@PathVariable("id") UUID id) {
-        log.debug("REST request to delete Booking : {}", id);
+        log.debug("REST request to delete contact : {}", id);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(Map.of("message", contactService.delete(id)
-                        .orElseThrow(() -> new RuntimeException("No booking was found with this id :" + id)))); //todo error
+                        .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + id)))); //todo error
     }
 }

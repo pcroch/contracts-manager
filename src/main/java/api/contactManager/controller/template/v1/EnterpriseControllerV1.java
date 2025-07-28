@@ -3,6 +3,7 @@ package api.contactManager.controller.template.v1;
 
 import api.contactManager.dto.ContactDTO;
 import api.contactManager.dto.EnterpriseDTO;
+import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.service.EnterpriseService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +40,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
                 .status(HttpStatus.OK)
                 .body(enterpriseService
                         .update(body)
-                        .orElseThrow(() -> new RuntimeException("No enterprise was found with this id :" + body.getId()))); //todo error to change
+                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this id :" + body.getId()))); //todo error to change
 
     }
 
@@ -51,7 +52,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
                 .status(HttpStatus.FOUND)
                 .body(enterpriseService
                         .findEnterpriseByVatNumber(vatNumber)
-                        .orElseThrow(() -> new RuntimeException("No enterprise was found with this vat number :" + vatNumber))); //todo error to change
+                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this vat number :" + vatNumber))); //todo error to change
     }
 
     @GetMapping("/enterprises")
@@ -62,7 +63,7 @@ public class EnterpriseControllerV1 extends BaseRestController {
 
     @PostMapping("/enterprise/addContact")
     public ResponseEntity addContactByEnterprise(@RequestParam("enterpriseId") UUID enterpriseId, @RequestParam("contactId") UUID contactId) {
-        return ResponseEntity
-                .status(HttpStatus.NO_CONTENT).build();
+        enterpriseService.addContactToEnterprise(enterpriseId, contactId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

@@ -4,6 +4,7 @@ import api.contactManager.domain.Contact;
 import api.contactManager.domain.Enterprise;
 import api.contactManager.dto.ContactDTO;
 import api.contactManager.dto.EnterpriseDTO;
+import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.mapper.ContactMapper;
 import api.contactManager.mapper.EnterpriseMapper;
 import api.contactManager.repository.ContactRepository;
@@ -87,12 +88,12 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     public void addContactToEnterprise(UUID enterpriseId, UUID contactId) {
 
         Enterprise enterprise = enterpriseRepository.findById(enterpriseId)
-                .orElseThrow(() -> new RuntimeException("No enterprise was found with this id: " + enterpriseId));
+                .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this id: " + enterpriseId));
 
         Contact contact = contactRepository
                 .findById(contactId)
-                .orElseThrow(() -> new RuntimeException("No Contact was found with this id: " + contactId));
-        contact.getEnterprises().add(enterprise); //todo check if not found what will happend
+                .orElseThrow(() -> new ResourceNotFoundException("No Contact was found with this id: " + contactId));
+        contact.getEnterprises().add(enterprise);
         contactRepository.save(contact);
     }
 }
