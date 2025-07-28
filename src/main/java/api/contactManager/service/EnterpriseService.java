@@ -1,5 +1,6 @@
 package api.contactManager.service;//package api.contactManager.service;
 
+import api.contactManager.domain.Contact;
 import api.contactManager.dto.ContactDTO;
 import api.contactManager.dto.EnterpriseDTO;
 
@@ -16,8 +17,8 @@ public interface EnterpriseService {
 
     EnterpriseDTO save(@Valid EnterpriseDTO enterpriseDTO);
 
-    //findEnterpriseByVatNumber
+    Optional<EnterpriseDTO>  findEnterpriseByVatNumber(@Valid String vatNumber);
 
-    //addContactByEnterprise
+    EnterpriseDTO addContactToEnterprise (ContactDTO contactDTO);
 
 }

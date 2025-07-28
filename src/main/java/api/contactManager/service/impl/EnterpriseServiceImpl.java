@@ -25,9 +25,12 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     private final EnterpriseMapper enterpriseMapper;
 
-    public EnterpriseServiceImpl(EnterpriseRepository enterpriseRepository, EnterpriseMapper enterpriseMapper) {
+    private final ContactMapper contactMapper;
+
+    public EnterpriseServiceImpl(EnterpriseRepository enterpriseRepository, EnterpriseMapper enterpriseMapper, ContactMapper contactMapper) {
         this.enterpriseRepository = enterpriseRepository;
         this.enterpriseMapper = enterpriseMapper;
+        this.contactMapper = contactMapper;
     }
 
 
@@ -39,24 +42,45 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public Optional<EnterpriseDTO> update(EnterpriseDTO enterpriseDTO) {
-            return enterpriseRepository
-                    .findById(enterpriseDTO.getId())
-                    .map(contact -> {
-                        enterpriseMapper.toMap(enterpriseDTO);
-                                return contact;
-                            }
-                    )
-                    .map(enterpriseRepository::save)
-                    .map(enterpriseMapper::toDomain);
-        }
+
     @Override
     public EnterpriseDTO save(EnterpriseDTO enterpriseDTO) {
         Enterprise enterprise = enterpriseMapper.toMap(enterpriseDTO);
 
         enterprise = enterpriseRepository.save(enterprise);
 
+        return enterpriseMapper.toDomain(enterprise);
+    }
+
+    @Override
+    public Optional<EnterpriseDTO> update(EnterpriseDTO enterpriseDTO) {
+        return enterpriseRepository
+                .findById(enterpriseDTO.getId())
+                .map(contact -> {
+                            enterpriseMapper.toMap(enterpriseDTO);
+                            return contact;
+                        }
+                )
+                .map(enterpriseRepository::save)
+                .map(enterpriseMapper::toDomain);
+    }
+
+    @Override
+    public Optional<EnterpriseDTO> findEnterpriseByVatNumber(String vatNumber) {
+
+        if (vatNumber == null || vatNumber.trim().isEmpty()) {
+            // Or throw an IllegalArgumentException
+            return Optional.empty();
+        }
+        return enterpriseRepository
+                .findOneByVatNumber(vatNumber)
+                .map(enterpriseMapper::toDomain);
+    }
+
+    @Override
+    public EnterpriseDTO addContactToEnterprise(ContactDTO contactDTO) {
+        Enterprise enterprise = enterpriseRepository
+                .addContact(contactMapper.toMap(contactDTO));
         return enterpriseMapper.toDomain(enterprise);
     }
 
