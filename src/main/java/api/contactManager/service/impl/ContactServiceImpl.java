@@ -37,18 +37,18 @@ public class ContactServiceImpl implements ContactService {
     public List<ContactDTO> findAll() {
         return contactRepository.findAll()
                 .stream()
-                .map(contactMapper::toDomain)
+                .map(contactMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public ContactDTO save(ContactDTO contactDTO) { //todo to refactor
 
-        Contact contact = contactMapper.toMap(contactDTO);
+        Contact contact = contactMapper.toEntity(contactDTO);
 
         contact = contactRepository.save(contact);
 
-        return contactMapper.toDomain(contact);
+        return contactMapper.toDto(contact);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ContactServiceImpl implements ContactService {
                         }
                 )
                 .map(contactRepository::save)
-                .map(contactMapper::toDomain)
+                .map(contactMapper::toDto)
                 .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + id));
     }
 

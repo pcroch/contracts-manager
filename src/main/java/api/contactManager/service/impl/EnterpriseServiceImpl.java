@@ -48,17 +48,17 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     public List<EnterpriseDTO> findAll() {
         return enterpriseRepository.findAll()
                 .stream()
-                .map(enterpriseMapper::toDomain)
+                .map(enterpriseMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public EnterpriseDTO save(EnterpriseDTO enterpriseDTO) {
-        Enterprise enterprise = enterpriseMapper.toMap(enterpriseDTO); //todo to refactor
+        Enterprise enterprise = enterpriseMapper.toEntity(enterpriseDTO); //todo to refactor
 
         enterprise = enterpriseRepository.save(enterprise);
 
-        return enterpriseMapper.toDomain(enterprise);
+        return enterpriseMapper.toDto(enterprise);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                         }
                 )
                 .map(enterpriseRepository::save)
-                .map(enterpriseMapper::toDomain)
+                .map(enterpriseMapper::toDto)
                 .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this id :" + enterpriseDTO.getId()));
     }
 //
@@ -85,7 +85,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
       Enterprise  enterprise =    enterpriseRepository
                 .findByVatNumber(vatNumber.trim())
                  .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this vat number :" + vatNumber));
-        return enterpriseMapper.toDomain(enterprise);
+        return enterpriseMapper.toDto(enterprise);
     }
 
     @Override

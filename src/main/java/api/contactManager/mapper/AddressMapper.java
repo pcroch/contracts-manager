@@ -17,7 +17,7 @@ public interface AddressMapper extends EntityMapper<AddressDTO, Address> {
     @Mapping(source = "country", target = "country")
     @Mapping(source = "contact", target = "contact")
     @Mapping(source = "enterprise", target = "enterprise")
-    AddressDTO toDomain(Address e);
-    Address toMap(AddressDTO dto);
+    AddressDTO toDto(Address e);
+    Address toEntity(AddressDTO dto);
 }
 

@@ -9,6 +9,9 @@ import java.util.Collection;
 
 public interface EntityMapper<D, E> {
 
+    E toEntity(D dto);
+
+    D toDto(E entity);
 
     @Named("update")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

@@ -13,15 +13,15 @@ public interface EnterpriseMapper extends EntityMapper<EnterpriseDTO, Enterprise
     @Mapping(source = "vatNumber", target = "vatNumber")
     @Mapping(source = "enterpriseAddress", target = "enterpriseAddress")
     @Mapping(source = "contacts", target = "contacts")
-    EnterpriseDTO toDomain(Enterprise e);
+    EnterpriseDTO toDto(Enterprise e);
 
-    Enterprise toMap(EnterpriseDTO dto);
+    Enterprise toEntity(EnterpriseDTO dto);
 
-
+    @Override
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "vatNumber")
-    @Mapping(target = "enterpriseAddress", ignore = true)
+    @Mapping(target = "enterpriseAddress") // ignore = false then we can update directly the address
     @Mapping(target = "contacts", ignore = true)
-    void updateEnterprise(EnterpriseDTO dto, @MappingTarget Enterprise entity);
+        // ignore = true then we can not update directly the contact
+    void update(@MappingTarget Enterprise entity, EnterpriseDTO dto);
 }
 
