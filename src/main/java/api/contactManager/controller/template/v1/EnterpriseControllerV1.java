@@ -2,7 +2,6 @@ package api.contactManager.controller.template.v1;
 
 
 import api.contactManager.dto.EnterpriseDTO;
-import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.service.EnterpriseService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -32,12 +31,12 @@ public class EnterpriseControllerV1 extends BaseRestController {
                 .body(enterpriseService.save(body));
     }
 
-    @PutMapping(value = "/enterprise")
-    public ResponseEntity<EnterpriseDTO> updateEnterprise(@RequestBody @NonNull EnterpriseDTO body) {
+    @PutMapping(value = "/enterprise") // not patch as fully updates
+    public ResponseEntity<EnterpriseDTO> updateEnterprise(@RequestParam("id") @NonNull UUID id, @RequestBody @NonNull EnterpriseDTO body) { //todo update
         log.info("REST request to update an enterprise completely: " + body.getId());
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(enterpriseService.update(body));
+                .body(enterpriseService.update(id, body));
 
     }
 

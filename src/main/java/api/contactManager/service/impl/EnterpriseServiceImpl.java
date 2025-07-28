@@ -4,6 +4,7 @@ import api.contactManager.domain.Contact;
 import api.contactManager.domain.Enterprise;
 import api.contactManager.dto.ContactDTO;
 import api.contactManager.dto.EnterpriseDTO;
+import api.contactManager.errors.BadRequestException;
 import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.mapper.ContactMapper;
 import api.contactManager.mapper.EnterpriseMapper;
@@ -61,7 +62,12 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public EnterpriseDTO update(EnterpriseDTO enterpriseDTO) {
+    public EnterpriseDTO update(UUID id, EnterpriseDTO enterpriseDTO) {
+
+        if (!id.equals(enterpriseDTO.getId())) {
+            throw new BadRequestException("Invalid Id, They should match");
+        }
+
         return enterpriseRepository
                 .findById(enterpriseDTO.getId())
                 .map(enterprise -> {

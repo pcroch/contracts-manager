@@ -2,6 +2,8 @@ package api.contactManager.service.impl;//package api.contactManager.service.imp
 
 import api.contactManager.domain.Contact;
 import api.contactManager.dto.ContactDTO;
+import api.contactManager.errors.BadRequestException;
+import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.mapper.ContactMapper;
 import api.contactManager.repository.ContactRepository;
 import api.contactManager.service.ContactService;
@@ -48,16 +50,22 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Optional<ContactDTO> update(ContactDTO contactDTO) {
+    public ContactDTO update(UUID id, ContactDTO contactDTO) {
+
+        if (!id.equals(contactDTO.getId())) {
+            throw new BadRequestException("Invalid Id, They should match");
+        }
+
         return contactRepository
                 .findById(contactDTO.getId())
                 .map(contact -> {
-                            contactMapper.toMap(contactDTO);
+                            contactMapper.update(contact, contactDTO);
                             return contact;
                         }
                 )
                 .map(contactRepository::save)
-                .map(contactMapper::toDomain);
+                .map(contactMapper::toDomain)
+                .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + id));
     }
 
     @Override
