@@ -25,33 +25,28 @@ public class EnterpriseControllerV1 extends BaseRestController {
     }
 
     @PostMapping("/enterprise")
-    public ResponseEntity<EnterpriseDTO> createEnterprise(@RequestBody @NonNull  EnterpriseDTO body) {
-        log.debug("REST request to create an entreprise");
+    public ResponseEntity<EnterpriseDTO> createEnterprise(@RequestBody @NonNull EnterpriseDTO body) {
+        log.info("REST request to create an entreprise");
         EnterpriseDTO enterpriseDTO = this.enterpriseService.save(body);
         return ResponseEntity.status(HttpStatus.CREATED).body(enterpriseDTO);
     }
 
     @PutMapping(value = "/enterprise")
     public ResponseEntity<EnterpriseDTO> updateEnterprise(@RequestBody @NonNull EnterpriseDTO body) {
-        log.debug("REST request to update an enterprise completely: " + body.getId());
-
+        log.info("REST request to update an enterprise completely: " + body.getId());
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(enterpriseService
                         .update(body)
-                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this id :" + body.getId())));
+                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this id :" + body.getId()))); //todo error to be nmoved to the service
 
     }
 
     @GetMapping(value = "/enterprise")
     public ResponseEntity<EnterpriseDTO> findEnterpriseByVatNumber(@NonNull @RequestParam("vatNumber") String vatNumber) {
-        log.debug("REST request to find an enterprise with VAT Number  : {}", vatNumber);
-        //todo if null and using params instead of path variable
-        return ResponseEntity
-                .status(HttpStatus.FOUND)
-                .body(enterpriseService
-                        .findEnterpriseByVatNumber(vatNumber)
-                        .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this vat number :" + vatNumber)));
+        log.info("REST request to find an enterprise with VAT Number  : {}", vatNumber);
+        EnterpriseDTO enterpriseDTO = enterpriseService.findEnterpriseByVatNumber(vatNumber);
+        return ResponseEntity.status(HttpStatus.OK).body(enterpriseDTO);
     }
 
     @GetMapping("/enterprises")

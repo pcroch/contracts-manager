@@ -16,7 +16,7 @@ public interface EnterpriseService {
 
     EnterpriseDTO save(@Valid EnterpriseDTO enterpriseDTO);
 
-    Optional<EnterpriseDTO>  findEnterpriseByVatNumber(@Valid String vatNumber);
+    EnterpriseDTO  findEnterpriseByVatNumber(@Valid String vatNumber);
 
     void addContactToEnterprise (UUID enterpriseId,UUID contactID);
 }

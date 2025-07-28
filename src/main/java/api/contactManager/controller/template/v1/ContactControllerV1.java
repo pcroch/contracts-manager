@@ -36,14 +36,14 @@ public class ContactControllerV1 extends BaseRestController {
 
     @PostMapping("/contact")
     public ResponseEntity<ContactDTO> createContact(@RequestBody @NonNull ContactDTO body) {
-        log.debug("REST request to create a contact");
+        log.info("REST request to create a contact");
         ContactDTO contact = this.contactService.save(body);
         return ResponseEntity.status(HttpStatus.CREATED).body(contact);
     }
 
     @PutMapping(value = "/contact/{id}") // not patch as fully updates
     public ResponseEntity<ContactDTO> updateContact(@PathVariable("id") UUID id, @RequestBody @NonNull ContactDTO body) {
-        log.debug("REST request to update a contact completely  : {}, {}", id, body.getName());
+        log.info("REST request to update a contact completely  : {}, {}", id, body.getName());
 
         if (!id.equals(body.getId())) {
             throw new IllegalArgumentException("Invalid ID");
@@ -59,7 +59,7 @@ public class ContactControllerV1 extends BaseRestController {
 
     @DeleteMapping(value = "/contacts/{id}")
     public ResponseEntity<Map<String, String>>  deleteContactPerId(@PathVariable("id") UUID id) {
-        log.debug("REST request to delete contact : {}", id);
+        log.info("REST request to delete contact : {}", id);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(Map.of("message", contactService.delete(id)

@@ -74,15 +74,11 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public Optional<EnterpriseDTO> findEnterpriseByVatNumber(String vatNumber) {
-
-        if (vatNumber == null || vatNumber.trim().isEmpty()) {
-            // Or throw an IllegalArgumentException
-            return Optional.empty();
-        }
-        return enterpriseRepository
-                .findByVatNumber(vatNumber)
-                .map(enterpriseMapper::toDomain);
+    public EnterpriseDTO findEnterpriseByVatNumber(String vatNumber) {
+      Enterprise  enterprise =    enterpriseRepository
+                .findByVatNumber(vatNumber.trim())
+                 .orElseThrow(() -> new ResourceNotFoundException("No enterprise was found with this vat number :" + vatNumber));
+        return enterpriseMapper.toDomain(enterprise);
     }
 
     @Override
@@ -97,6 +93,6 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                 .orElseThrow(() -> new ResourceNotFoundException("No Contact was found with this id: " + contactId));
         contact.getEnterprises().add(enterprise);
         contactRepository.save(contact);
-        log.debug("the contact {} was added to the enterprise {}", contactId, enterpriseId);
+        log.info("the contact {} was added to the enterprise {}", contactId, enterpriseId);
     }
 }
