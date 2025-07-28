@@ -84,7 +84,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     @Override
     @Transactional
-    public EnterpriseDTO addContactToEnterprise(UUID enterpriseId, UUID contactId) {
+    public void addContactToEnterprise(UUID enterpriseId, UUID contactId) {
 
         Enterprise enterprise = enterpriseRepository.findById(enterpriseId)
                 .orElseThrow(() -> new RuntimeException("No enterprise was found with this id: " + enterpriseId));
@@ -92,13 +92,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         Contact contact = contactRepository
                 .findById(contactId)
                 .orElseThrow(() -> new RuntimeException("No Contact was found with this id: " + contactId));
-        contact.getEnterprises().add(enterprise);
+        contact.getEnterprises().add(enterprise); //todo check if not found what will happend
         contactRepository.save(contact);
-
-        Enterprise updateEnterprise = enterpriseRepository.findById(enterpriseId)
-                .orElseThrow(() -> new RuntimeException("No enterprise was found with this id: " + enterpriseId));
-
-        return enterpriseMapper.toDomain(updateEnterprise);
-
     }
 }
