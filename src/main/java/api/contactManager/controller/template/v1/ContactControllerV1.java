@@ -35,7 +35,7 @@ public class ContactControllerV1 extends BaseRestController {
 
 
     @PostMapping("/contact")
-    public ResponseEntity<ContactDTO> createContact(@RequestBody ContactDTO body) {
+    public ResponseEntity<ContactDTO> createContact(@RequestBody @NonNull ContactDTO body) {
         log.debug("REST request to create a contact");
         ContactDTO contact = this.contactService.save(body);
         return ResponseEntity.status(HttpStatus.CREATED).body(contact);
@@ -53,8 +53,7 @@ public class ContactControllerV1 extends BaseRestController {
                 .status(HttpStatus.OK)
                 .body(contactService
                         .update(body)
-                        .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + id))); //todo error to change
-
+                        .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + id)));
     }
 
 
@@ -64,6 +63,6 @@ public class ContactControllerV1 extends BaseRestController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(Map.of("message", contactService.delete(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + id)))); //todo error
+                        .orElseThrow(() -> new ResourceNotFoundException("No contact was found with this id :" + id))));
     }
 }
