@@ -23,7 +23,7 @@ import java.util.UUID;
 
 @Slf4j
 @Controller
-public class EnterpriseControllerV1 extends BaseRestController{
+public class EnterpriseControllerV1 extends BaseRestController {
 
     private final EnterpriseService enterpriseService;
 
@@ -54,11 +54,15 @@ public class EnterpriseControllerV1 extends BaseRestController{
 
     }
 
-    @PutMapping(value = "/enterprises/{vatNumber}")
-    public ResponseEntity<Contact> findEnterpriseByVatNumber(@PathVariable("vatNumber") UUID id, @RequestBody @NonNull EnterpriseDTO body) {
-        log.info("Update");
-        //todo remplace by body params
-        return null;
+    @PutMapping(value = "/enterprise/{vatNumber}")
+    public ResponseEntity<EnterpriseDTO> findEnterpriseByVatNumber(@PathVariable("vatNumber") String vatNumber) {
+        log.debug("REST request to find an enterprise with VAT Number  : {}", vatNumber);
+        //todo if null and using params instead of path variable
+        return ResponseEntity
+                .status(HttpStatus.FOUND)
+                .body(enterpriseService
+                        .findEnterpriseByVatNumber(vatNumber)
+                        .orElseThrow(() -> new RuntimeException("No enterprise was found with this vat number :" + vatNumber))); //todo error to change
     }
 
     @GetMapping("/enterprises")
@@ -67,12 +71,13 @@ public class EnterpriseControllerV1 extends BaseRestController{
         return ResponseEntity.status(HttpStatus.OK).body(enterpriseService.findAll());
     }
 
-    @PostMapping("/append")
-    public ResponseEntity<Contact> addContactByEnterprise(@RequestBody ContactDTO body) {
-        log.info("Create");
-        return null;
+    @PostMapping("/enterprise/addContact/{uuid}\"")
+    public ResponseEntity<EnterpriseDTO> addContactByEnterprise(@PathVariable("uuid") UUID uuid, @RequestBody ContactDTO body) {
+        return ResponseEntity
+                .status(HttpStatus.FOUND)
+                .body(enterpriseService
+                        .addContactToEnterprise(uuid, body));
     }
-
 
 
 }
