@@ -11,10 +11,11 @@ public interface ContactMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "lastName", target = "lastName")
-    @Mapping(source = "employee", target = "employee") //todo should not be employee
+    @Mapping(source = "isEmployee", target = "isEmployee")
     @Mapping(source = "tvaNumber", target = "tvaNumber")
     @Mapping(source = "contactAddress", target = "contactAddress")
-    @Mapping(source = "enterprise", target = "enterprise")
+    @Mapping(source = "enterprises", target = "enterprises")
+
     ContactDTO toDomain(Contact e);
     Contact toMap(ContactDTO dto);
 }

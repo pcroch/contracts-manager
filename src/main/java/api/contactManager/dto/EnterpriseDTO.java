@@ -7,17 +7,17 @@ import java.util.UUID;
 import api.contactManager.domain.Address;
 import api.contactManager.domain.Contact;
 import api.contactManager.domain.Enterprise;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 
-@Data
-@ToString
+@Getter
+@Setter
+@ToString(exclude = {"contacts"})
 public class EnterpriseDTO implements Serializable {
 
     private UUID id;
     private String tvaNumber;
     private Address enterpriseAddress;
-    private Set<Contact> contact;
+    private Set<Contact> contacts;
 }

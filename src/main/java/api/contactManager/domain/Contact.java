@@ -1,7 +1,8 @@
 package api.contactManager.domain;
 
-import lombok.Data;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -11,7 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @ToString
 @Table(name = "contact")
@@ -32,18 +34,20 @@ public class Contact implements Serializable {
 
     @ColumnDefault("true")
     @Column(name = "is_employee")
-    private boolean isEmployee;
+    private Boolean isEmployee;
 
     @Column(name = "tva_number")
     private String tvaNumber;
 
-    @OneToOne //@OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @OneToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address contactAddress;
 
-    @ManyToMany
-//    @JoinTable(
-//            name = "enterprise_contact",
-//            joinColumns = {@JoinColumn(name = "enterprise_id", referencedColumnName = "id")})
-    private Set<Enterprise> enterprise = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JoinTable(
+            name = "enterprise_contact",
+            joinColumns = @JoinColumn(name = "contact_id"),
+            inverseJoinColumns = @JoinColumn(name = "enterprise_id"))
+    private Set<Enterprise> enterprises = new HashSet<>();
 }

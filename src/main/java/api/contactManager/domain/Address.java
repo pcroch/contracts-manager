@@ -1,13 +1,16 @@
 package api.contactManager.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @ToString
 @Table(name = "address")
@@ -42,8 +45,11 @@ public class Address implements Serializable {
     private String country;
 
     @OneToOne(mappedBy = "contactAddress")
+    @JsonIgnore
     private Contact contact;
 
     @OneToOne(mappedBy = "enterpriseAddress")
+    @JsonIgnore
     private Enterprise enterprise;
+
 }
