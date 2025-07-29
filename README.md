@@ -41,16 +41,12 @@ In case of conflict with a port you can change the default port 8080 to the desi
 
 ### How to fetch:
 
-## Health Endpoint:
+## Postman configuration:
 
-    curl http://localhost:8080/api/v1/health
+you can find the file to import in postman with some examples
 
-## Should respond:
+    contracts-manager/src/main/resources/db/postman
 
-``` 
-{ 
-    "status": "UP"  
-} 
-```
+    
 
 

@@ -35,7 +35,7 @@ public class Contact implements Serializable {
     @Column(name = "is_employee")
     private Boolean isEmployee;
 
-    @Column(name = "vat_number")
+    @Column(name = "vat_number") //todo managing when the vat is empty but isEmployee is false
     private String vatNumber;
 
     @OneToOne
@@ -56,13 +56,4 @@ public class Contact implements Serializable {
     public int hashCode() {
         return 31;
     }
-
-//    @Override
-//    public String toString() {
-//        return "Contact{" +
-//                "id=" + id +
-//                ", firstName='" + lastName + '\'' +
-//                ", enterprises=" + lastName +
-//                '}';
-//    }
 }
