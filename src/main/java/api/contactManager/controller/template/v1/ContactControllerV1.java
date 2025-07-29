@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,7 +34,7 @@ public class ContactControllerV1 extends BaseRestController {
 
 
     @PostMapping("/contact")
-    public ResponseEntity<ContactDTO> createContact(@RequestBody @NonNull ContactDTO body) {
+    public ResponseEntity<ContactDTO> createContact(@Valid @RequestBody @NonNull ContactDTO body) {
         log.info("REST request to create a contact");
         return ResponseEntity
                 .status(HttpStatus.CREATED)
