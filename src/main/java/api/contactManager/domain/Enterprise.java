@@ -30,9 +30,4 @@ public class Enterprise {
     @ManyToMany(mappedBy = "enterprises", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Contact> contacts;
-
-    public void addContact(Contact contact) {
-        contacts.add(contact);
-        this.setContacts(contacts);
-    }
 }
