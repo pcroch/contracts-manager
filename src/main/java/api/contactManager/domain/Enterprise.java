@@ -30,24 +30,4 @@ public class Enterprise {
     @ManyToMany(mappedBy = "enterprises", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Contact> contacts;
-
-    public void addContact(Contact contact) {
-        contacts.add(contact);
-        this.setContacts(contacts);
-    }
-
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Enterprise{" +
-                "id=" + id +
-                ", firstName='" + vatNumber + '\'' +
-                ", enterprises=" + vatNumber +
-                '}';
-    }
 }

@@ -7,6 +7,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,7 +36,8 @@ public class Contact implements Serializable {
     @Column(name = "is_employee")
     private Boolean isEmployee;
 
-    @Column(name = "vat_number")
+    @Size(max = 12, message = "VAT number cannot exceed 12 characters")
+    @Column(name = "vat_number") //todo managing when the vat is empty but isEmployee is false
     private String vatNumber;
 
     @OneToOne
@@ -56,13 +58,4 @@ public class Contact implements Serializable {
     public int hashCode() {
         return 31;
     }
-
-//    @Override
-//    public String toString() {
-//        return "Contact{" +
-//                "id=" + id +
-//                ", firstName='" + lastName + '\'' +
-//                ", enterprises=" + lastName +
-//                '}';
-//    }
 }

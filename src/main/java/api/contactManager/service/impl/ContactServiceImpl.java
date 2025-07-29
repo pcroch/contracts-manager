@@ -3,6 +3,7 @@ package api.contactManager.service.impl;
 import api.contactManager.domain.Contact;
 import api.contactManager.dto.ContactDTO;
 import api.contactManager.errors.BadRequestException;
+import api.contactManager.errors.InvalidInputRequestException;
 import api.contactManager.errors.ResourceNotFoundException;
 import api.contactManager.mapper.ContactMapper;
 import api.contactManager.repository.ContactRepository;
@@ -40,6 +41,15 @@ public class ContactServiceImpl implements ContactService {
     public ContactDTO save(ContactDTO contactDTO) {
 
         Contact contact = contactMapper.toEntity(contactDTO);
+
+        if(!contact.getIsEmployee() && contact.getVatNumber() == null){
+            throw new InvalidInputRequestException("VAT number is mandatory for a freelancer");
+        }
+
+        if(contact.getIsEmployee() && contact.getVatNumber() != null){
+            throw new InvalidInputRequestException("VAT number should not be present for an employee");
+        }
+
 
         contact = contactRepository.save(contact);
 

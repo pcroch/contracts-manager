@@ -50,20 +50,4 @@ public class Address implements Serializable {
     @OneToOne(mappedBy = "enterpriseAddress")
     @JsonIgnore
     private Enterprise enterprise;
-
-
-    @Override
-    public int hashCode() {
-        return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id=" + getId() +
-                ", road='" + getBoxNumber() + "'" +
-                ", postBdox=" + getLocality() +
-                ", houseNumber=" + getLocality() +
-                "}";
-    }
 }

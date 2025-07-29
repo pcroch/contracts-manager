@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "cfbc4fa6-7974-4879-b2e3-313e189a13d3",
+		"name": "contracts-manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13789638"
+	},
+	"item": [
+		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contacts",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "enterprises",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/enterprises",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"enterprises"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get by VAT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/enterprise?vatNumber=BE9876543210",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"enterprise"
+					],
+					"query": [
+						{
+							"key": "vatNumber",
+							"value": "BE9876543210"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update enterprise",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"e6a7ff8b-9c5c-4174-a823-3ffd261a5fcc\",\n    \"vatNumber\": \"sdfdffgc\",\n    \"enterpriseAddress\": {\n      \"id\": \"e5f6a7b8-c9d0-1234-5678-90abcdef0123\",\n      \"streetNumber\": \"h8\",\n      \"boxNumber\": null,\n      \"streetName\": \"Rue de la Loi\",\n      \"zipcode\": \"1000\",\n      \"locality\": \"Brussels\",\n      \"country\": \"Belgium\"\n    },\n    \"contacts\": [\n      {\n        \"id\": \"e01f2fc2-d559-4e3b-b667-b4078bf0fefa\",\n        \"name\": \"Alice\",\n        \"lastName\": \"Smith\",\n        \"isEmployee\": true,\n        \"vatNumber\": null,\n        \"contactAddress\": {\n          \"id\": \"e5f6a7b8-c9d0-1234-5678-90abcdef0123\",\n          \"streetNumber\": \"8\",\n          \"boxNumber\": null,\n          \"streetName\": \"Rue de la Loi\",\n          \"zipcode\": \"1000\",\n          \"locality\": \"Brussels\",\n          \"country\": \"Belgium\"\n        }\n      },\n      {\n        \"id\": \"f0d9feeb-f25e-45dd-b688-5524a3fbb985\",\n        \"name\": \"Charlie\",\n        \"lastName\": \"Brown\",\n        \"isEmployee\": true,\n        \"vatNumber\": null,\n        \"contactAddress\": {\n          \"id\": \"a1b2c3d4-e5f6-7890-5678-90abcdef0123\",\n          \"streetNumber\": \"21\",\n          \"boxNumber\": null,\n          \"streetName\": \"Kouter\",\n          \"zipcode\": \"9000\",\n          \"locality\": \"Ghent\",\n          \"country\": \"Belgium\"\n        }\n      }\n    ]\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/enterprise?id=e6a7ff8b-9c5c-4174-a823-3ffd261a5fcc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"enterprise"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "e6a7ff8b-9c5c-4174-a823-3ffd261a5fcc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create enterprise",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vatNumber\": \"BE123456789\",\n    \"enterpriseAddress\": {\n      \"streetNumber\": \"95\",\n      \"boxNumber\": null,\n      \"streetName\": \"hgbfhgbfghb\",\n      \"zipcode\": \"1000\",\n      \"locality\": \"Brussels\",\n      \"country\": \"Belgium\"\n    },\n    \"contacts\": [ ]\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/enterprise",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"enterprise"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add contact to enterprise",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/enterprise/addContact?contactId=2efd6efe-6998-4299-b883-177fe11da065&enterpriseId=e6a7ff8b-9c5c-4174-a823-3ffd261a5fcc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"enterprise",
+						"addContact"
+					],
+					"query": [
+						{
+							"key": "contactId",
+							"value": "2efd6efe-6998-4299-b883-177fe11da065"
+						},
+						{
+							"key": "enterpriseId",
+							"value": "e6a7ff8b-9c5c-4174-a823-3ffd261a5fcc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"a9b8c7d6-e5f4-3210-fedc-ba9876543210\",\n    \"name\": \"David\",\n    \"lastName\": \"Lee\",\n    \"isEmployee\": true,\n    \"vatNumber\": null,\n    \"addressId\": \"e5f6a7b8-c9d0-1234-5678-90abcdef0123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/contact",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update contact",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"e01f2fc2-d559-4e3b-b667-b4078bf0fefa\",\n  \"name\": \"David\",\n  \"lastName\": \"Lee\",\n  \"isEmployee\": true,\n  \"vatNumber\": null,\n  \"addressId\": \"e5f6a7b8-c9d0-1234-5678-90abcdef0123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/contact?id=e01f2fc2-d559-4e3b-b667-b4078bf0fefa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"contact"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "e01f2fc2-d559-4e3b-b667-b4078bf0fefa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete contact",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/contact?id=e01f2fc2-d559-4e3b-b667-b4078bf0fefa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"contact"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "e01f2fc2-d559-4e3b-b667-b4078bf0fefa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contatc-error freelancer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"a9b8c7d6-e5f4-3210-fedc-ba9876543210\",\n  \"name\": \"David\",\n  \"lastName\": \"Lee\",\n  \"isEmployee\": false,\n  \"vatNumber\": null,\n  \"addressId\": \"e5f6a7b8-c9d0-1234-5678-90abcdef0123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/contact",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contatc-error vat",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"a9b8c7d6-e5f4-3210-fedc-ba9876543210\",\n  \"name\": \"David\",\n  \"lastName\": \"Lee\",\n  \"isEmployee\": false,\n  \"vatNumber\": \"waytoolongvatNumberwaytoolong\",\n  \"addressId\": \"e5f6a7b8-c9d0-1234-5678-90abcdef0123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/contact",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"contact"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
