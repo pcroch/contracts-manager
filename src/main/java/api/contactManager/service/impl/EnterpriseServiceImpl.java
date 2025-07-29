@@ -1,4 +1,4 @@
-package api.contactManager.service.impl;//package api.contactManager.service.impl;
+package api.contactManager.service.impl;
 
 import api.contactManager.domain.Contact;
 import api.contactManager.domain.Enterprise;
@@ -13,7 +13,6 @@ import api.contactManager.repository.EnterpriseRepository;
 import api.contactManager.service.EnterpriseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -23,8 +22,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-//@Transactional //todo que faire avec
-//@Validated
 public class EnterpriseServiceImpl implements EnterpriseService {
 
     private final EnterpriseRepository enterpriseRepository;
@@ -54,7 +51,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     @Override
     public EnterpriseDTO save(EnterpriseDTO enterpriseDTO) {
-        Enterprise enterprise = enterpriseMapper.toEntity(enterpriseDTO); //todo to refactor
+        Enterprise enterprise = enterpriseMapper.toEntity(enterpriseDTO);
 
         enterprise = enterpriseRepository.save(enterprise);
 

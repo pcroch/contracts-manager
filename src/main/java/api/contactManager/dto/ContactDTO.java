@@ -1,6 +1,5 @@
 package api.contactManager.dto;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -12,8 +11,6 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-//@NoArgsConstructor
-//@ToString(exclude = {"enterprises"})
 public class ContactDTO implements Serializable {
 
     private UUID id;

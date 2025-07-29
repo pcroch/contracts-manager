@@ -1,4 +1,4 @@
-package api.contactManager.service.impl;//package api.contactManager.service.impl;
+package api.contactManager.service.impl;
 
 import api.contactManager.domain.Contact;
 import api.contactManager.dto.ContactDTO;
@@ -9,19 +9,14 @@ import api.contactManager.repository.ContactRepository;
 import api.contactManager.service.ContactService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 
 @Slf4j
 @Service
-//@Transactional //todo que faire
-//@Validated
 public class ContactServiceImpl implements ContactService {
 
     private final ContactRepository contactRepository;
@@ -42,7 +37,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public ContactDTO save(ContactDTO contactDTO) { //todo to refactor
+    public ContactDTO save(ContactDTO contactDTO) {
 
         Contact contact = contactMapper.toEntity(contactDTO);
 
