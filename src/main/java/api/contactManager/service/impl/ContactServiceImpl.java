@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-//@Transactional //todo que faire
-//@Validated
 public class ContactServiceImpl implements ContactService {
 
     private final ContactRepository contactRepository;
@@ -42,7 +40,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public ContactDTO save(ContactDTO contactDTO) { //todo to refactor
+    public ContactDTO save(ContactDTO contactDTO) {
 
         Contact contact = contactMapper.toEntity(contactDTO);
 
