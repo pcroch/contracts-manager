@@ -17,7 +17,7 @@ Using those settings:
 ![img.png](img.png)
 
  Driver:
-    
+     
     org.h2.Driver
 
  URL:
