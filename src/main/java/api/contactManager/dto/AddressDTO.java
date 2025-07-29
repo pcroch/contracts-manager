@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-//@NoArgsConstructor
 public class AddressDTO implements Serializable {
 
     private UUID id;

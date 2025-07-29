@@ -13,8 +13,6 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-//@NoArgsConstructor
-//@ToString(exclude = {"contacts"})
 public class EnterpriseDTO implements Serializable {
 
     private UUID id;

@@ -1,4 +1,4 @@
-package api.contactManager.service.impl;//package api.contactManager.service.impl;
+package api.contactManager.service.impl;
 
 import api.contactManager.domain.Contact;
 import api.contactManager.dto.ContactDTO;
@@ -9,11 +9,8 @@ import api.contactManager.repository.ContactRepository;
 import api.contactManager.service.ContactService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
