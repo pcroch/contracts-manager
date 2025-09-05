@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Using face dessign pattern
+ */
 public interface ContactService extends CrudService<ContactDTO, UUID>  {
 
     List<ContactDTO> findAll();

@@ -9,6 +9,10 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Using face dessign pattern
+ */
+
 public interface EnterpriseService extends CrudService<EnterpriseDTO, UUID> {
 
     List<EnterpriseDTO> findAll();
